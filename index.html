@@ -81,6 +81,15 @@ header.hero h1{font-size:clamp(1.7rem,4vw,2.4rem); font-weight:700;}
 .stat .sub{font-size:0.8rem; color:var(--ink-muted); margin-top:4px;}
 @media (max-width:680px){.stats{grid-template-columns:1fr;}}
 
+/* ---- usage cap alert ---- */
+.usage-alert{margin-top:18px; background:var(--amber-soft); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; box-shadow:var(--shadow);}
+.usage-alert .ua-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap;}
+.usage-alert .ua-title{font-weight:700; color:var(--amber-strong); font-size:0.95rem;}
+.usage-alert .ua-figure{font-family:"IBM Plex Mono"; font-weight:600; color:var(--ink);}
+.progress-track{height:10px; border-radius:6px; background:var(--surface-3); margin-top:10px; overflow:hidden;}
+.progress-fill{height:100%; border-radius:6px; background:var(--amber);}
+.usage-alert p{margin:10px 0 0; font-size:0.86rem; color:var(--ink-soft);}
+
 /* ---- sections ---- */
 section{padding-block:40px 8px; border-top:1px solid var(--border); scroll-margin-top:56px;}
 section:first-of-type{border-top:none;}
@@ -171,6 +180,7 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
 
 <nav class="tabbar" id="tabbar">
   <a href="#overview">Overview</a>
+  <a href="#usage">Current usage</a>
   <a href="#tiers">Plan tiers</a>
   <a href="#proxy">Proxy costs</a>
   <a href="#storage">Storage &amp; transfer</a>
@@ -182,13 +192,13 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
 <header class="hero" id="overview">
   <div class="eyebrow">UMich Procurement · Apify platform</div>
   <h1>Punchout Fleet Ledger</h1>
-  <p class="source-note"><b>Pricing source:</b> Apify public pricing page and the Apify Console "Change subscription" view, reviewed 2026&#8209;09&#8209;10. Prices are monthly unless noted. Subscription fees are a prepaid usage credit — usage beyond it is billed pay-as-you-go on paid plans at that plan's rate, and unused credit does not roll over. <b>Fleet data</b> (proxy column, build status) was read directly out of each actor's <code class="mono">.actor/input_schema.json</code> and <code class="mono">main.py</code> in this repo, not estimated.</p>
+  <p class="source-note"><b>Pricing source:</b> Apify public pricing page and the Apify Console "Change subscription" view, reviewed 2026&#8209;09&#8209;10. Prices are monthly unless noted. Subscription fees are a prepaid usage credit — usage beyond it is billed pay-as-you-go on paid plans at that plan's rate, and unused credit does not roll over. <b>Fleet data</b> (proxy column, build status) was read directly out of each actor's <code class="mono">.actor/input_schema.json</code> and <code class="mono">main.py</code> in this repo, not estimated. <b>Usage data</b> was pulled live from the Apify account API (<code class="mono">umich_bf_procurement</code>) on 2026&#8209;09&#8209;10 — actual runs, actual dollars, not projections.</p>
 
   <div class="stats">
     <div class="stat">
       <div class="label">Actors running proxy today</div>
       <div class="value">3<span class="unit"> / 13</span></div>
-      <div class="sub">Grainger, Fisher, Jemtech ship RESIDENTIAL proxy pre-enabled. 8 more have it wired in but off ($0). 2 legacy actors have no proxy path at all.</div>
+      <div class="sub">Grainger, Fisher, Jemtech ship RESIDENTIAL proxy pre-enabled. Actual cloud runs this cycle show just 1.28 GB drawn — see Current usage.</div>
     </div>
     <div class="stat">
       <div class="label">Starter → Scale breakeven</div>
@@ -202,6 +212,63 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
     </div>
   </div>
 </header>
+
+<section id="usage">
+  <div class="section-head"><h2>Current usage</h2><span class="section-tag">live from Apify, 2026-09-10</span></div>
+  <p class="dek">Pulled directly from the <code class="mono">umich_bf_procurement</code> account's billing API — not a model, the actual meter. One correction to the tables above: Apify's billing API reports this account's real Starter base price as <b>$29/month</b>, not the $19 the public pricing page states. Trust this over the marketing page — either Apify quietly raised Starter's price, or the account is on an older plan version (<code class="mono">planVersion 13</code>). The $0.20/CU compute rate and $8.00/GB residential proxy rate do match the public Starter numbers exactly.</p>
+
+  <div class="usage-alert">
+    <div class="ua-head">
+      <span class="ua-title">⚠ Billing-cycle usage cap: close to the ceiling</span>
+      <span class="ua-figure">$125.31 / $150.00</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" style="width:83.5%"></div></div>
+    <p>Current cycle runs Aug 26 – Sep 25, 2026. At 15 of 30 days elapsed, the account has already used <b>83.5%</b> of its $150 monthly usage cap. At the trailing burn rate (~$8.35/day), the cap is on pace to be hit around <b>Sep 13–14</b> — roughly two weeks before the cycle resets — which would pause every actor's runs until either the cap is raised or the cycle turns over. Raising <code class="mono">maxMonthlyUsageUsd</code> in the Apify Console is the immediate fix if runs need to keep going.</p>
+  </div>
+
+  <div class="stats" style="margin-top:18px;">
+    <div class="stat">
+      <div class="label">Compute used this cycle</div>
+      <div class="value">481<span class="unit"> CU</span></div>
+      <div class="sub">of a 1,999,999 CU plan ceiling — CU itself is nowhere near the limit; dollars are.</div>
+    </div>
+    <div class="stat">
+      <div class="label">Residential proxy used</div>
+      <div class="value">1.28<span class="unit"> GB</span></div>
+      <div class="sub">≈$10.25 of the cycle's spend — small next to compute, but 100% of it comes from actors that ran with proxy input actually filled in at run time.</div>
+    </div>
+    <div class="stat">
+      <div class="label">Active actors on the account</div>
+      <div class="value">15</div>
+      <div class="sub">13 audited below + 2 (IDT, Eurofins) with no matching folder in this repo — see note.</div>
+    </div>
+  </div>
+
+  <p class="dek" style="margin-top:22px;">Per-actor, straight from run history — not every "live" actor in the project audit below has actually executed on this account's cloud yet.</p>
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th>Actor</th><th class="num">Cloud runs</th><th class="wrap-cell">Most recent run</th><th class="wrap-cell">Largest run on record</th><th class="num">Lifetime spend</th></tr></thead>
+    <tbody>
+      <tr><td>B&amp;H</td><td class="num">24</td><td class="wrap-cell">✅ succeeded · <b>$38.27</b> · 181.2 CU · 22.7 hr</td><td class="wrap-cell">same run — its most recent run is also its biggest</td><td class="num">$67.98</td></tr>
+      <tr><td>Mozart / Medline</td><td class="num">8</td><td class="wrap-cell">🛑 aborted · $16.84 burned before stopping</td><td class="wrap-cell">🛑 aborted · $16.84 (same run) · last clean success was a $0.09 test</td><td class="num">$21.87</td></tr>
+      <tr><td>Fisher Scientific</td><td class="num">33</td><td class="wrap-cell">✅ succeeded · $0.07 · 3.4 min (small resume/patch run)</td><td class="wrap-cell">⏱ timed out · $6.35 — the 1.83M-row catalog was built by chaining many runs like this, not one clean pass</td><td class="num">$31.12</td></tr>
+      <tr><td>DigiKey</td><td class="num">13</td><td class="wrap-cell">✅ succeeded · $0.02 · 1.3 min</td><td class="wrap-cell">⏱ timed out · $0.80</td><td class="num">$1.47</td></tr>
+      <tr><td>CST</td><td class="num">2</td><td class="wrap-cell">✅ succeeded · $0.20 · 3.0 min</td><td class="wrap-cell">same run</td><td class="num">$0.21</td></tr>
+      <tr><td>Ferguson</td><td class="num">1</td><td class="wrap-cell">✅ succeeded · $0.03 · 2.4 min</td><td class="wrap-cell">same run — only one run exists yet</td><td class="num">$0.03</td></tr>
+      <tr><td>AVI</td><td class="num">4</td><td class="wrap-cell">✅ succeeded · $0.02 · 1.3 min</td><td class="wrap-cell">same run</td><td class="num">$0.04</td></tr>
+      <tr><td>IDT <span class="chip off">not in local repo</span></td><td class="num">8</td><td class="wrap-cell">✅ succeeded · $0.01 · 3.7 min</td><td class="wrap-cell">❌ failed · $0.02</td><td class="num">$0.08</td></tr>
+      <tr><td>Eurofins <span class="chip off">not in local repo</span></td><td class="num">4</td><td class="wrap-cell">✅ succeeded · $0.01 · 3.3 min</td><td class="wrap-cell">✅ succeeded · $0.02</td><td class="num">$0.05</td></tr>
+      <tr><td>Grainger</td><td class="num">0</td><td class="wrap-cell" colspan="2">No cloud runs on this account — every verified run has been local (<code class="mono">apify run</code>), not on the Apify platform</td><td class="num">$0.00</td></tr>
+      <tr><td>Imperial Bag &amp; Paper</td><td class="num">0</td><td class="wrap-cell" colspan="2">No cloud runs on this account</td><td class="num">$0.00</td></tr>
+      <tr><td>Jagger (CDW)</td><td class="num">0</td><td class="wrap-cell" colspan="2">No cloud runs on this account</td><td class="num">$0.00</td></tr>
+      <tr><td>Sigma-Aldrich</td><td class="num">0</td><td class="wrap-cell" colspan="2">No cloud runs on this account</td><td class="num">$0.00</td></tr>
+      <tr><td>Staples</td><td class="num">0</td><td class="wrap-cell" colspan="2">No cloud runs on this account</td><td class="num">$0.00</td></tr>
+      <tr><td>Jemtech</td><td class="num">—</td><td class="wrap-cell" colspan="2">No actor exists on Apify at all — built locally, never <code class="mono">apify push</code>'d</td><td class="num">—</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="foot-note"><b>B&amp;H is the fleet's real cost driver</b> — one successful run costs more ($38.27) than every other actor's entire lifetime spend on this account combined. It's also running with residential proxy off, per the audit below, despite carrying the fleet's worst incident history. <b>Five actors show zero cloud executions</b> despite being marked "live" in the source audit — that status reflects the code working end-to-end locally, not a confirmed cloud run under this account; worth reconciling before calling them production-ready in the platform-usage sense. <b>Two actors (IDT, Eurofins) have no corresponding folder in this repo</b> — they exist and have run on Apify, but their source isn't here to audit for proxy usage the way the other 13 are.</p>
+</section>
 
 <section id="tiers">
   <div class="section-head"><h2>Plan tiers</h2><span class="section-tag">apify.com/pricing</span></div>
@@ -296,21 +363,21 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
 
 <section id="calculator">
   <div class="section-head"><h2>Breakeven calculator</h2><span class="section-tag">combined CU + residential proxy spend</span></div>
-  <p class="dek">Apify's prepaid credit is one shared balance — a dollar of proxy usage and a dollar of compute draw from the exact same pool. So the real question isn't "how much CU," it's <em>total monthly platform spend</em> at each tier's rate card, compared against that tier's subscription price. Enter your own numbers — nothing here is pre-filled with a guess at your actual usage.</p>
+  <p class="dek">Apify's prepaid credit is one shared balance — a dollar of proxy usage and a dollar of compute draw from the exact same pool. So the real question isn't "how much CU," it's <em>total monthly platform spend</em> at each tier's rate card, compared against that tier's subscription price. Pre-filled below with this cycle's actual measured usage (Aug 26–Sep 25, 2026) — adjust to model a different month.</p>
 
   <div class="calc-panel">
     <div class="calc-inputs">
       <div class="field">
         <label for="cuInput">Compute units / month</label>
-        <input type="number" id="cuInput" value="600" min="0" step="10">
-        <input type="range" id="cuRange" value="600" min="0" max="8000" step="10">
-        <div class="hint">1 CU = 1 GB RAM for 1 hour. Check Apify Console → Billing → Usage for your fleet's actual trailing-30-day figure.</div>
+        <input type="number" id="cuInput" value="481" min="0" step="10">
+        <input type="range" id="cuRange" value="481" min="0" max="8000" step="10">
+        <div class="hint">1 CU = 1 GB RAM for 1 hour. Pre-filled with this cycle's actual usage — Apify Console → Billing → Usage has the current figure going forward.</div>
       </div>
       <div class="field">
         <label for="gbInput">Residential proxy / month (GB)</label>
-        <input type="number" id="gbInput" value="0" min="0" step="1">
-        <input type="range" id="gbRange" value="0" min="0" max="200" step="1">
-        <div class="hint">Only Grainger, Fisher, and Jemtech spend here today. Set to 0 to see compute-only breakeven.</div>
+        <input type="number" id="gbInput" value="1.3" min="0" step="0.1">
+        <input type="range" id="gbRange" value="1.3" min="0" max="200" step="0.1">
+        <div class="hint">This cycle's actual residential draw, almost entirely from B&amp;H, Fisher, and Grainger runs where proxy was actually filled in.</div>
       </div>
       <div class="recommend" id="recommendBox">
         <div class="r-label">Cheapest tier at this usage</div>
@@ -339,6 +406,11 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
 <section id="recommendation">
   <div class="section-head"><h2>Recommendation</h2><span class="section-tag">for this fleet, today</span></div>
   <div class="rec-grid">
+    <div class="rec-card" style="border-color:var(--amber); background:var(--amber-soft);">
+      <h4>Raise the usage cap this week</h4>
+      <p>83.5% of the $150 monthly cap is already spent with 15 days left in the cycle. On current pace, every actor's runs pause around Sep 13–14 until the cap is raised or the cycle resets Sep 25.</p>
+      <div class="why">This is a tier-independent setting in Console → Billing, and it's the only finding here with an actual deadline.</div>
+    </div>
     <div class="rec-card">
       <h4>Stay on Starter</h4>
       <p>13 actors, single-run-at-a-time, mostly zero-DOM API calls. 32 concurrent runs and 64 GB Actor RAM are far beyond what this fleet has ever asked for.</p>
