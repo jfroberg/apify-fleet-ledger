@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T18:36:21.605350+00:00",
+  "generatedAt": "2026-09-10T19:49:10.589313+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 29,
@@ -14,8 +14,8 @@
     "maxMonthlyUsageUsd": 150
   },
   "current": {
-    "monthlyUsageUsd": 125.72371553375777,
-    "monthlyActorComputeUnits": 483.2940800000001,
+    "monthlyUsageUsd": 126.59054091067024,
+    "monthlyActorComputeUnits": 487.1964166666668,
     "monthlyResidentialProxyGbytes": 1.282645309343934,
     "actorCount": 15
   },
@@ -99,14 +99,14 @@
       "name": "Ferguson",
       "actorId": "zWa1i5e0cr8H50URs",
       "inLocalRepo": true,
-      "cloudRuns": 2,
-      "lifetimeUsd": 0.4455,
+      "cloudRuns": 3,
+      "lifetimeUsd": 1.2905,
       "referenceRun": {
-        "status": "RUNNING",
-        "usd": 0.4129027941413457,
+        "status": "TIMED-OUT",
+        "usd": 0.8806278799859881,
         "startedAt": "2026-09-10T18:07:25.420Z",
-        "cu": 1.924,
-        "durationMin": 28.9,
+        "cu": 4.0,
+        "durationMin": 60.0,
         "proxyGb": 0
       }
     },
@@ -161,9 +161,16 @@
       "name": "Staples",
       "actorId": "6TdbGbcy7ZS2C1iMa",
       "inLocalRepo": true,
-      "cloudRuns": 0,
-      "lifetimeUsd": 0,
-      "referenceRun": null
+      "cloudRuns": 1,
+      "lifetimeUsd": 0.004,
+      "referenceRun": {
+        "status": "FAILED",
+        "usd": 0.003974862184857327,
+        "startedAt": "2026-09-10T19:47:34.768Z",
+        "cu": 0.02,
+        "durationMin": 0.3,
+        "proxyGb": 0
+      }
     },
     {
       "name": "IDT",
