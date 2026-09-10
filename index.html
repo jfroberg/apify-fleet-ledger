@@ -1,0 +1,590 @@
+<title>Punchout Fleet Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#F4F6F8; --surface:#FFFFFF; --surface-2:#EAEEF1; --surface-3:#DEE4E8;
+  --ink:#12181F; --ink-soft:#4E5A67; --ink-muted:#7C8896; --border:#D8DEE4;
+  --accent:#1C7C77; --accent-strong:#0F5E5A; --accent-soft:#E4F1EE;
+  --amber:#9C5E0A; --amber-soft:#F7ECD9; --amber-strong:#7A4808;
+  --critical:#9C3A32; --critical-soft:#F7E6E3;
+  --good:#25714F; --good-soft:#E4F0EA;
+  --muted-chip:#5B6672; --muted-chip-soft:#E9ECEF;
+  --tier-starter:#3E6FA8; --tier-scale:#1C8C6B; --tier-business:#C2461E;
+  --shadow: 0 1px 2px rgba(18,24,31,0.06), 0 6px 20px -8px rgba(18,24,31,0.18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#10151A; --surface:#171E25; --surface-2:#1E2630; --surface-3:#28323D;
+    --ink:#EDF1F4; --ink-soft:#B7C1CB; --ink-muted:#7E8B97; --border:#2B3540;
+    --accent:#35B0A8; --accent-strong:#5FD1C8; --accent-soft:#152C2A;
+    --amber:#E0A23C; --amber-soft:#2E2412; --amber-strong:#F0BE6E;
+    --critical:#E2726A; --critical-soft:#2E1917;
+    --good:#4CAF7D; --good-soft:#152A20;
+    --muted-chip:#9AA5B0; --muted-chip-soft:#212930;
+    --tier-starter:#4C86C4; --tier-scale:#2FA37D; --tier-business:#D8632E;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -8px rgba(0,0,0,0.5);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#10151A; --surface:#171E25; --surface-2:#1E2630; --surface-3:#28323D;
+  --ink:#EDF1F4; --ink-soft:#B7C1CB; --ink-muted:#7E8B97; --border:#2B3540;
+  --accent:#35B0A8; --accent-strong:#5FD1C8; --accent-soft:#152C2A;
+  --amber:#E0A23C; --amber-soft:#2E2412; --amber-strong:#F0BE6E;
+  --critical:#E2726A; --critical-soft:#2E1917;
+  --good:#4CAF7D; --good-soft:#152A20;
+  --muted-chip:#9AA5B0; --muted-chip-soft:#212930;
+  --tier-starter:#4C86C4; --tier-scale:#2FA37D; --tier-business:#D8632E;
+  --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -8px rgba(0,0,0,0.5);
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  font-size:16px; line-height:1.5;
+  padding-inline:20px; padding-block:0 64px;
+}
+h1,h2,h3{font-family:"Source Serif 4", Georgia, serif; text-wrap:balance; margin:0;}
+.mono{font-family:"IBM Plex Mono", ui-monospace, monospace; font-variant-numeric:tabular-nums;}
+.wrap{max-width:1080px; margin:0 auto;}
+
+/* ---- sheet-tab nav ---- */
+.tabbar{
+  position:sticky; top:0; z-index:50; background:var(--bg);
+  display:flex; gap:2px; overflow-x:auto; padding-top:14px;
+  border-bottom:2px solid var(--surface-3);
+  scrollbar-width:none;
+}
+.tabbar::-webkit-scrollbar{display:none;}
+.tabbar a{
+  flex:0 0 auto; padding:9px 16px 8px; border-radius:8px 8px 0 0;
+  background:var(--surface-2); color:var(--ink-soft); text-decoration:none;
+  font-size:0.82rem; font-weight:600; letter-spacing:.02em; white-space:nowrap;
+  border:1px solid var(--border); border-bottom:none; position:relative; top:2px;
+}
+.tabbar a:hover{color:var(--ink); background:var(--surface-3);}
+.tabbar a.current{background:var(--surface); color:var(--accent-strong); border-color:var(--surface-3); top:0; border-bottom:2px solid var(--surface);}
+
+/* ---- header ---- */
+header.hero{padding-block:28px 20px;}
+.eyebrow{font-size:0.78rem; text-transform:uppercase; letter-spacing:.09em; color:var(--accent-strong); font-weight:600; margin-bottom:8px;}
+header.hero h1{font-size:clamp(1.7rem,4vw,2.4rem); font-weight:700;}
+.source-note{margin-top:12px; color:var(--ink-muted); font-size:0.86rem; max-width:66ch;}
+.source-note b{color:var(--ink-soft); font-weight:600;}
+
+/* ---- stat tiles ---- */
+.stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-top:22px; box-shadow:var(--shadow);}
+.stat{background:var(--surface); padding:18px 18px 16px;}
+.stat .label{font-size:0.76rem; color:var(--ink-muted); text-transform:uppercase; letter-spacing:.06em; font-weight:600;}
+.stat .value{font-family:"IBM Plex Mono"; font-size:1.7rem; font-weight:600; margin-top:6px; color:var(--ink); font-variant-numeric:tabular-nums;}
+.stat .value .unit{font-size:0.95rem; color:var(--ink-muted); font-weight:500;}
+.stat .sub{font-size:0.8rem; color:var(--ink-muted); margin-top:4px;}
+@media (max-width:680px){.stats{grid-template-columns:1fr;}}
+
+/* ---- sections ---- */
+section{padding-block:40px 8px; border-top:1px solid var(--border); scroll-margin-top:56px;}
+section:first-of-type{border-top:none;}
+.section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:6px; flex-wrap:wrap;}
+.section-head h2{font-size:1.45rem;}
+.section-tag{font-size:0.74rem; font-family:"IBM Plex Mono"; color:var(--ink-muted); background:var(--surface-2); padding:2px 8px; border-radius:5px; border:1px solid var(--border);}
+.dek{color:var(--ink-soft); max-width:70ch; margin-top:6px; font-size:0.96rem;}
+
+/* ---- tables ---- */
+.tbl-scroll{overflow-x:auto; margin-top:16px; border:1px solid var(--border); border-radius:10px; box-shadow:var(--shadow);}
+table{width:100%; border-collapse:collapse; background:var(--surface); font-size:0.88rem; min-width:560px;}
+th,td{padding:9px 14px; text-align:left; border-bottom:1px solid var(--border); white-space:nowrap;}
+th{background:var(--surface-2); color:var(--ink-soft); font-weight:600; font-size:0.76rem; text-transform:uppercase; letter-spacing:.04em; position:sticky; top:0;}
+td.num, th.num{text-align:right; font-family:"IBM Plex Mono"; font-variant-numeric:tabular-nums;}
+tbody tr:nth-child(even){background:var(--surface-2);}
+tbody tr:last-child td{border-bottom:none;}
+td.wrap-cell, th.wrap-cell{white-space:normal; min-width:240px;}
+.row-highlight td{background:var(--accent-soft) !important;}
+.foot-note{font-size:0.8rem; color:var(--ink-muted); margin-top:10px; max-width:70ch;}
+
+/* ---- chips ---- */
+.chip{display:inline-flex; align-items:center; gap:5px; padding:3px 9px 3px 8px; border-radius:999px; font-size:0.76rem; font-weight:600; white-space:nowrap;}
+.chip::before{content:""; width:7px; height:7px; border-radius:50%; flex:0 0 auto;}
+.chip.on{background:var(--amber-soft); color:var(--amber-strong);}
+.chip.on::before{background:var(--amber);}
+.chip.off{background:var(--muted-chip-soft); color:var(--muted-chip);}
+.chip.off::before{background:var(--muted-chip);}
+.chip.none{background:var(--surface-3); color:var(--ink-muted);}
+.chip.none::before{background:var(--ink-muted);}
+.chip.blocked{background:var(--critical-soft); color:var(--critical);}
+.chip.blocked::before{background:var(--critical);}
+.chip.good{background:var(--good-soft); color:var(--good);}
+.chip.good::before{background:var(--good);}
+
+/* ---- calculator ---- */
+.calc-panel{display:grid; grid-template-columns:280px 1fr; gap:24px; margin-top:18px; align-items:start;}
+@media (max-width:820px){.calc-panel{grid-template-columns:1fr;}}
+.calc-inputs{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:16px;}
+.field label{display:block; font-size:0.8rem; font-weight:600; color:var(--ink-soft); margin-bottom:5px;}
+.field .hint{font-size:0.76rem; color:var(--ink-muted); margin-top:4px;}
+.field input[type="number"]{
+  width:100%; padding:9px 10px; border:1px solid var(--border); border-radius:7px;
+  background:var(--bg); color:var(--ink); font-family:"IBM Plex Mono"; font-size:0.95rem;
+}
+.field input[type="range"]{width:100%; accent-color:var(--accent); margin-top:6px;}
+.recommend{border-radius:10px; padding:14px 16px; background:var(--accent-soft); border:1px solid var(--accent); }
+.recommend .r-label{font-size:0.74rem; text-transform:uppercase; letter-spacing:.05em; color:var(--accent-strong); font-weight:700;}
+.recommend .r-tier{font-family:"Source Serif 4"; font-size:1.4rem; font-weight:700; color:var(--ink); margin-top:2px;}
+.recommend .r-detail{font-size:0.83rem; color:var(--ink-soft); margin-top:4px;}
+.cost-rows{display:flex; flex-direction:column; gap:8px; margin-top:4px;}
+.cost-row{display:flex; justify-content:space-between; align-items:center; padding:7px 10px; border-radius:7px; background:var(--surface-2); font-size:0.85rem;}
+.cost-row.win{background:var(--good-soft); outline:1px solid var(--good);}
+.cost-row .cr-name{display:flex; align-items:center; gap:7px; font-weight:600;}
+.cost-row .swatch{width:9px;height:9px;border-radius:2px;}
+.cost-row .cr-val{font-family:"IBM Plex Mono"; font-weight:600;}
+
+.chart-card{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 12px 8px; box-shadow:var(--shadow);}
+.chart-card h3{font-size:0.95rem; margin-bottom:2px;}
+svg#chart{width:100%; height:auto; overflow:visible;}
+.axis-label{font-size:10px; fill:var(--ink-muted); font-family:"IBM Plex Mono", monospace;}
+.grid-line{stroke:var(--border); stroke-width:1;}
+.tier-line{fill:none; stroke-width:2.25;}
+.tier-dot{stroke:var(--surface); stroke-width:2;}
+.crossover-dot{fill:var(--surface); stroke-width:2;}
+.crossover-label{font-size:10.5px; font-family:"IBM Plex Mono"; font-weight:600;}
+.end-label{font-size:11.5px; font-family:"Source Sans 3"; font-weight:700;}
+.hover-line{stroke:var(--ink-muted); stroke-width:1; stroke-dasharray:3 3; opacity:0;}
+.hover-dot{opacity:0;}
+.tooltip{position:absolute; pointer-events:none; background:var(--ink); color:var(--bg); padding:8px 10px; border-radius:7px; font-size:0.78rem; box-shadow:var(--shadow); opacity:0; transition:opacity .08s; z-index:10; font-family:"IBM Plex Mono"; white-space:nowrap;}
+.chart-wrap{position:relative;}
+.legend-row{display:flex; gap:16px; flex-wrap:wrap; margin-top:10px; font-size:0.8rem; color:var(--ink-soft);}
+.legend-row span{display:inline-flex; align-items:center; gap:6px;}
+.legend-row .sw{width:12px;height:3px; border-radius:2px; display:inline-block;}
+
+/* ---- recommendation cards ---- */
+.rec-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:18px;}
+.rec-card{background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow);}
+.rec-card h4{font-family:"Source Serif 4"; font-size:1.05rem; margin:0 0 4px;}
+.rec-card p{margin:0; font-size:0.85rem; color:var(--ink-soft);}
+.rec-card .why{font-size:0.78rem; color:var(--ink-muted); margin-top:8px; border-top:1px dashed var(--border); padding-top:8px;}
+
+ul.notes{margin:14px 0 0; padding-left:1.1em; color:var(--ink-soft); font-size:0.9rem; display:flex; flex-direction:column; gap:8px;}
+ul.notes b{color:var(--ink);}
+footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); font-size:0.78rem; color:var(--ink-muted); text-align:center;}
+</style>
+
+<div class="wrap">
+
+<nav class="tabbar" id="tabbar">
+  <a href="#overview">Overview</a>
+  <a href="#tiers">Plan tiers</a>
+  <a href="#proxy">Proxy costs</a>
+  <a href="#storage">Storage &amp; transfer</a>
+  <a href="#projects">Project audit</a>
+  <a href="#calculator">Breakeven calculator</a>
+  <a href="#recommendation">Recommendation</a>
+</nav>
+
+<header class="hero" id="overview">
+  <div class="eyebrow">UMich Procurement · Apify platform</div>
+  <h1>Punchout Fleet Ledger</h1>
+  <p class="source-note"><b>Pricing source:</b> Apify public pricing page and the Apify Console "Change subscription" view, reviewed 2026&#8209;09&#8209;10. Prices are monthly unless noted. Subscription fees are a prepaid usage credit — usage beyond it is billed pay-as-you-go on paid plans at that plan's rate, and unused credit does not roll over. <b>Fleet data</b> (proxy column, build status) was read directly out of each actor's <code class="mono">.actor/input_schema.json</code> and <code class="mono">main.py</code> in this repo, not estimated.</p>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Actors running proxy today</div>
+      <div class="value">3<span class="unit"> / 13</span></div>
+      <div class="sub">Grainger, Fisher, Jemtech ship RESIDENTIAL proxy pre-enabled. 8 more have it wired in but off ($0). 2 legacy actors have no proxy path at all.</div>
+    </div>
+    <div class="stat">
+      <div class="label">Starter → Scale breakeven</div>
+      <div class="value">995<span class="unit"> CU/mo</span></div>
+      <div class="sub">Below this, Starter's pay-as-you-go is cheaper than Scale's flat $199. Above it, Scale wins.</div>
+    </div>
+    <div class="stat">
+      <div class="label">Scale → Business breakeven</div>
+      <div class="value">6,244<span class="unit"> CU/mo</span></div>
+      <div class="sub">Roughly 6× the current fleet's likely monthly volume — see the calculator for your own numbers.</div>
+    </div>
+  </div>
+</header>
+
+<section id="tiers">
+  <div class="section-head"><h2>Plan tiers</h2><span class="section-tag">apify.com/pricing</span></div>
+  <p class="dek">The subscription price <em>is</em> the prepaid usage balance — Starter's $19 buys 95 CU before pay-as-you-go kicks in at the same $0.20/CU rate. Higher tiers don't add a discount on top of a fee; they lower the per-unit rate for every dollar you spend.</p>
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th>Category</th><th class="num">Free</th><th class="num">Starter</th><th class="num">Scale</th><th class="num">Business</th><th class="num">Enterprise</th></tr></thead>
+    <tbody>
+      <tr><td>Monthly subscription</td><td class="num">$0</td><td class="num">$19</td><td class="num">$199</td><td class="num">$999</td><td class="num">Custom</td></tr>
+      <tr><td>Included prepaid usage</td><td class="num">$5/mo</td><td class="num">$19/mo</td><td class="num">$199/mo</td><td class="num">$999/mo</td><td class="num">Custom</td></tr>
+      <tr><td class="wrap-cell">Beyond included usage</td><td class="wrap-cell">Access pauses until next cycle</td><td class="wrap-cell">Pay-as-you-go</td><td class="wrap-cell">Pay-as-you-go</td><td class="wrap-cell">Pay-as-you-go</td><td class="wrap-cell">Custom</td></tr>
+      <tr><td>Annual billing discount</td><td class="num">—</td><td class="num">10%</td><td class="num">10%</td><td class="num">10%</td><td class="num">Contact Apify</td></tr>
+      <tr><td>Compute-unit rate</td><td class="num">$0.20/CU</td><td class="num">$0.20/CU</td><td class="num">$0.16/CU</td><td class="num">$0.13/CU</td><td class="num">Custom</td></tr>
+      <tr><td class="wrap-cell">1 CU definition</td><td class="wrap-cell" colspan="5">1&nbsp;GB RAM for 1 hour — identical across every tier</td></tr>
+      <tr><td>Max Actor RAM</td><td class="num">16 GB</td><td class="num">64 GB</td><td class="num">256 GB</td><td class="num">512 GB</td><td class="num">Unlimited</td></tr>
+      <tr><td>Max concurrent runs</td><td class="num">5</td><td class="num">32</td><td class="num">128</td><td class="num">256</td><td class="num">Unlimited</td></tr>
+      <tr><td>Support</td><td class="num">Community</td><td class="num">Chat</td><td class="num">Priority chat</td><td class="num">Account manager</td><td class="num">Dedicated team</td></tr>
+      <tr><td>Technical training</td><td class="num">—</td><td class="num">$150/hr</td><td class="num">1 hr/quarter</td><td class="num">1 hr/month</td><td class="num">Custom</td></tr>
+      <tr><td>Single sign-on</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">Custom</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="foot-note">The fleet's actors run one supplier scrape at a time, sequentially — none has ever needed more than a handful of concurrent runs or more than a few GB of Actor RAM. Concurrency and RAM ceilings are not the constraint for this program at any tier; total monthly dollar spend is. That's why the calculator below only models spend.</p>
+</section>
+
+<section id="proxy">
+  <div class="section-head"><h2>Proxy costs</h2><span class="section-tag">per tier</span></div>
+  <p class="dek">Residential proxy is the line item that actually moves the needle for this fleet — three actors depend on it to get past WAFs that block Apify's datacenter IP range outright.</p>
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th>Proxy product</th><th class="num">Starter</th><th class="num">Scale</th><th class="num">Business</th><th class="num">Enterprise</th></tr></thead>
+    <tbody>
+      <tr class="row-highlight"><td>Residential proxy</td><td class="num">$8.00/GB</td><td class="num">$7.50/GB</td><td class="num">$7.00/GB</td><td class="num">Custom</td></tr>
+      <tr><td>Included datacenter IPs</td><td class="num">30</td><td class="num">200</td><td class="num">500</td><td class="num">Custom</td></tr>
+      <tr><td>Additional datacenter IP</td><td class="num">$1.00/IP</td><td class="num">$0.80/IP</td><td class="num">$0.60/IP</td><td class="num">Custom</td></tr>
+      <tr><td>Google SERP proxy</td><td class="num">$2.50/1,000</td><td class="num">$2.00/1,000</td><td class="num">$1.70/1,000</td><td class="num">Custom</td></tr>
+      <tr><td>Unblocker</td><td class="num">$1.50/1,000 req</td><td class="num">$1.25/1,000 req</td><td class="num">$1.00/1,000 req</td><td class="num">Custom</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="foot-note">Datacenter proxy IPs (used by none of the fleet's actors today) are essentially free at every tier's included allowance. Residential is the one that competes with compute for budget — and its rate drops on the same schedule as the CU rate, so it's part of the same tier decision, not a separate one. That's why the calculator combines both.</p>
+</section>
+
+<section id="storage">
+  <div class="section-head"><h2>Storage &amp; data transfer</h2><span class="section-tag">unit-cost reference</span></div>
+  <p class="dek">Small relative to compute and proxy at this fleet's volumes — kept here for completeness, not modeled in the calculator.</p>
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th>Service · unit</th><th class="num">Starter</th><th class="num">Scale</th><th class="num">Business</th></tr></thead>
+    <tbody>
+      <tr><td>Dataset storage, 1,000 GB-hr</td><td class="num">$1.00</td><td class="num">$0.90</td><td class="num">$0.80</td></tr>
+      <tr><td>Dataset reads, 1,000 ops</td><td class="num">$0.0004</td><td class="num">$0.00036</td><td class="num">$0.00032</td></tr>
+      <tr><td>Dataset writes, 1,000 ops</td><td class="num">$0.005</td><td class="num">$0.0045</td><td class="num">$0.004</td></tr>
+      <tr><td>Key-value storage, 1,000 GB-hr</td><td class="num">$1.00</td><td class="num">$0.90</td><td class="num">$0.80</td></tr>
+      <tr><td>Key-value reads, 1,000 ops</td><td class="num">$0.005</td><td class="num">$0.0045</td><td class="num">$0.004</td></tr>
+      <tr><td>Key-value writes, 1,000 ops</td><td class="num">$0.05</td><td class="num">$0.045</td><td class="num">$0.04</td></tr>
+      <tr><td>Request-queue storage, 1,000 GB-hr</td><td class="num">$4.00</td><td class="num">$3.60</td><td class="num">$3.20</td></tr>
+      <tr><td>Request-queue writes, 1,000 ops</td><td class="num">$0.01</td><td class="num">$0.009</td><td class="num">$0.008</td></tr>
+      <tr><td>External data transfer, per GB</td><td class="num">$0.20</td><td class="num">$0.19</td><td class="num">$0.18</td></tr>
+      <tr><td>Internal data transfer, per GB</td><td class="num">$0.05</td><td class="num">$0.045</td><td class="num">$0.04</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-head"><h2>Project proxy audit</h2><span class="section-tag">read from source, 2026-09-10</span></div>
+  <p class="dek">Every row below was read out of that actor's own <code class="mono">input_schema.json</code> and <code class="mono">main.py</code> — not inferred. "Prefilled" means the Console pre-checks RESIDENTIAL when the actor is opened, so it bills on every run unless someone clears it.</p>
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th>Supplier actor</th><th>Build status</th><th>Proxy default</th><th class="wrap-cell">Why (from source)</th></tr></thead>
+    <tbody>
+      <tr><td>Grainger</td><td><span class="chip good">live</span></td><td><span class="chip on">RESIDENTIAL · prefilled</span></td><td class="wrap-cell">Akamai WAF blocks Apify's datacenter IP range outright, even with a valid session — proxy is mandatory, not optional.</td></tr>
+      <tr><td>Fisher Scientific</td><td><span class="chip good">live · 1.83M rows</span></td><td><span class="chip on">RESIDENTIAL · prefilled</span></td><td class="wrap-cell">Prefilled from the same template guard; SSO session pinning + WAF risk on the login phase before the bulk pricing API takes over.</td></tr>
+      <tr><td>Jemtech</td><td><span class="chip good">built</span></td><td><span class="chip on">RESIDENTIAL · prefilled</span></td><td class="wrap-cell">WAF + rotating-IP SSO breakage risk flagged in the schema; not yet confirmed against a live blocking incident.</td></tr>
+      <tr><td>B&amp;H</td><td><span class="chip good">live</span></td><td><span class="chip off">optional · off ($0)</span></td><td class="wrap-cell">Only an internal <code class="mono">/api/*</code> fetch was blocked during discovery, not page navigation — but this actor has had 4 silent-drain incidents live, worth re-testing with RESIDENTIAL on.</td></tr>
+      <tr><td>CST</td><td><span class="chip good">live</span></td><td><span class="chip off">optional · off ($0)</span></td><td class="wrap-cell">Cloudflare present on the site but never challenges plain navigation in testing.</td></tr>
+      <tr><td>Imperial Bag &amp; Paper</td><td><span class="chip good">live</span></td><td><span class="chip off">optional · off ($0)</span></td><td class="wrap-cell">No bot-management symptoms observed; API-first build with zero DOM scraping.</td></tr>
+      <tr><td>DigiKey</td><td><span class="chip good">live</span></td><td><span class="chip off">optional · off ($0)</span></td><td class="wrap-cell">Punchout domain is unguarded; the public digikey.com marketing site sits behind Cloudflare but this actor never touches that host.</td></tr>
+      <tr><td>AVI</td><td><span class="chip good">built</span></td><td><span class="chip off">optional · off ($0)</span></td><td class="wrap-cell">No bot-management symptoms observed against AVI's eOrder app during development.</td></tr>
+      <tr><td>Sigma-Aldrich</td><td><span class="chip good">built</span></td><td><span class="chip off">optional · off ($0)</span></td><td class="wrap-cell">Not observed during development; only the SSO IP-pinning risk remains, same as the others in this row.</td></tr>
+      <tr><td>Mozart / Medline</td><td><span class="chip good">live</span></td><td><span class="chip good">confirmed unnecessary</span></td><td class="wrap-cell">DataDome present on every page load but confirmed live to never challenge plain single-page navigation — the only actor where $0 is a tested result, not just an untested default.</td></tr>
+      <tr><td>Ferguson</td><td><span class="chip off" style="background:var(--surface-3);color:var(--ink-muted)">in progress</span></td><td><span class="chip off">TBD</span></td><td class="wrap-cell">Built today; proxy description is still the template's boilerplate text, not yet supplier-verified.</td></tr>
+      <tr><td>Jagger (CDW)</td><td><span class="chip good">live</span></td><td><span class="chip none">no proxy path</span></td><td class="wrap-cell">Predates the proxy field in the shared template — the original reference build has no proxy code at all.</td></tr>
+      <tr><td>Staples</td><td><span class="chip good">live</span></td><td><span class="chip none">no proxy path</span></td><td class="wrap-cell">Same pre-template vintage as Jagger — no proxy code.</td></tr>
+      <tr><td>Azenta (GENEWIZ)</td><td><span class="chip blocked">blocked</span></td><td><span class="chip none">n/a</span></td><td class="wrap-cell">Punchout fails server-side on UMich's own end — never reached the build stage, so there's no actor to audit.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="foot-note">Net: 3 of 13 built actors spend real proxy dollars today. 8 have the switch wired in and confirmed off. 2 have no switch at all. Re-testing B&amp;H with RESIDENTIAL on is the one open question this audit surfaces — its silent-drain history doesn't match its current "off" default.</p>
+</section>
+
+<section id="calculator">
+  <div class="section-head"><h2>Breakeven calculator</h2><span class="section-tag">combined CU + residential proxy spend</span></div>
+  <p class="dek">Apify's prepaid credit is one shared balance — a dollar of proxy usage and a dollar of compute draw from the exact same pool. So the real question isn't "how much CU," it's <em>total monthly platform spend</em> at each tier's rate card, compared against that tier's subscription price. Enter your own numbers — nothing here is pre-filled with a guess at your actual usage.</p>
+
+  <div class="calc-panel">
+    <div class="calc-inputs">
+      <div class="field">
+        <label for="cuInput">Compute units / month</label>
+        <input type="number" id="cuInput" value="600" min="0" step="10">
+        <input type="range" id="cuRange" value="600" min="0" max="8000" step="10">
+        <div class="hint">1 CU = 1 GB RAM for 1 hour. Check Apify Console → Billing → Usage for your fleet's actual trailing-30-day figure.</div>
+      </div>
+      <div class="field">
+        <label for="gbInput">Residential proxy / month (GB)</label>
+        <input type="number" id="gbInput" value="0" min="0" step="1">
+        <input type="range" id="gbRange" value="0" min="0" max="200" step="1">
+        <div class="hint">Only Grainger, Fisher, and Jemtech spend here today. Set to 0 to see compute-only breakeven.</div>
+      </div>
+      <div class="recommend" id="recommendBox">
+        <div class="r-label">Cheapest tier at this usage</div>
+        <div class="r-tier" id="recTier">—</div>
+        <div class="r-detail" id="recDetail">—</div>
+      </div>
+      <div class="cost-rows" id="costRows"></div>
+    </div>
+
+    <div class="chart-card">
+      <h3>Monthly cost by tier, as compute scales</h3>
+      <p class="foot-note" style="margin-top:0;">Proxy GB held at your input above; drag along the CU axis via the slider or hover the chart.</p>
+      <div class="chart-wrap">
+        <svg id="chart" viewBox="0 0 720 380" preserveAspectRatio="xMidYMid meet"></svg>
+        <div class="tooltip" id="tooltip"></div>
+      </div>
+      <div class="legend-row">
+        <span><i class="sw" style="background:var(--tier-starter)"></i>Starter ($0.20/CU · $8.00/GB)</span>
+        <span><i class="sw" style="background:var(--tier-scale)"></i>Scale ($0.16/CU · $7.50/GB)</span>
+        <span><i class="sw" style="background:var(--tier-business)"></i>Business ($0.13/CU · $7.00/GB)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="recommendation">
+  <div class="section-head"><h2>Recommendation</h2><span class="section-tag">for this fleet, today</span></div>
+  <div class="rec-grid">
+    <div class="rec-card">
+      <h4>Stay on Starter</h4>
+      <p>13 actors, single-run-at-a-time, mostly zero-DOM API calls. 32 concurrent runs and 64 GB Actor RAM are far beyond what this fleet has ever asked for.</p>
+      <div class="why">Move to Scale only once trailing monthly spend is consistently pushing past ~$150–190, i.e. approaching the $199 flat fee from below.</div>
+    </div>
+    <div class="rec-card">
+      <h4>Re-test B&amp;H's proxy setting</h4>
+      <p>It's the one actor with a live incident history (4 silent-drain events) whose proxy default doesn't match that history — everything else either needs RESIDENTIAL and has it, or has tested clean and left it off.</p>
+      <div class="why">A $7.50–8.00/GB residential run against B&amp;H is cheap insurance against another drain.</div>
+    </div>
+    <div class="rec-card">
+      <h4>Watch Grainger + Fisher + Jemtech spend</h4>
+      <p>These three carry 100% of the fleet's proxy cost. If their combined residential GB grows, the Scale-tier proxy discount ($7.50 vs $8.00/GB) starts mattering before the CU rate does.</p>
+      <div class="why">Run their actual GB/month through the calculator above whenever volume changes materially.</div>
+    </div>
+    <div class="rec-card">
+      <h4>Ask about academic pricing before annual billing</h4>
+      <p>Apify discounts annual paid plans 10% and has separately mentioned institutional discounts. Get a quote before locking in a year at Starter or Scale.</p>
+      <div class="why">10% off Starter is only ~$1.90/mo — worth asking, not worth chasing.</div>
+    </div>
+  </div>
+
+  <ul class="notes">
+    <li><b>Prepaid credit expires.</b> Don't upgrade a tier just to "bank" unused capacity — unused balance does not roll over to the next billing cycle.</li>
+    <li><b>Rented Store Actors can bill differently.</b> Some charge per event rather than per CU; check each Actor's own pricing page before folding it into this fleet's budget.</li>
+    <li><b>Test with a representative run</b> — real auth, real page/category counts, real retries — before trusting a CU estimate. Apify's own guidance is the same: run it, then read the Billing → Usage view.</li>
+    <li><b>Plan limits aren't the whole governance story.</b> Credential storage, workspace ownership, access review, and data retention sit outside this pricing page entirely and are worth a separate pass with university IT.</li>
+  </ul>
+</section>
+
+<footer>Built from apify.com/pricing (reviewed 2026-09-10) and this repository's actor source. Figures update if either source changes — this page does not.</footer>
+</div>
+
+<script>
+(function(){
+  const RATES = {
+    starter:  { label:'Starter',  sub:19,  cu:0.20, proxy:8.00, color:'var(--tier-starter)' },
+    scale:    { label:'Scale',    sub:199, cu:0.16, proxy:7.50, color:'var(--tier-scale)' },
+    business: { label:'Business', sub:999, cu:0.13, proxy:7.00, color:'var(--tier-business)' }
+  };
+  const ORDER = ['starter','scale','business'];
+
+  function cssVar(name){
+    return getComputedStyle(document.documentElement).getPropertyValue(name.replace('var(','').replace(')','')).trim() || name;
+  }
+  function resolveColor(v){
+    if(v.startsWith('var(')) return cssVar(v);
+    return v;
+  }
+
+  function cost(tierKey, cu, gb){
+    const t = RATES[tierKey];
+    const usage = cu * t.cu + gb * t.proxy;
+    return Math.max(t.sub, usage);
+  }
+
+  const cuInput = document.getElementById('cuInput');
+  const cuRange = document.getElementById('cuRange');
+  const gbInput = document.getElementById('gbInput');
+  const gbRange = document.getElementById('gbRange');
+  const recTier = document.getElementById('recTier');
+  const recDetail = document.getElementById('recDetail');
+  const costRows = document.getElementById('costRows');
+  const svg = document.getElementById('chart');
+  const tooltip = document.getElementById('tooltip');
+
+  function syncPair(a,b){
+    a.addEventListener('input', ()=>{ b.value = a.value; render(); });
+    b.addEventListener('input', ()=>{ a.value = b.value; render(); });
+  }
+  syncPair(cuInput, cuRange);
+  syncPair(gbInput, gbRange);
+
+  function fmtMoney(v){
+    return '$' + v.toLocaleString(undefined, {minimumFractionDigits: v < 1000 ? 2 : 0, maximumFractionDigits: 2});
+  }
+
+  function updateRecommendation(){
+    const cu = Math.max(0, Number(cuInput.value) || 0);
+    const gb = Math.max(0, Number(gbInput.value) || 0);
+    const costs = ORDER.map(k => ({key:k, val: cost(k, cu, gb)}));
+    const cheapest = costs.slice().sort((a,b)=>a.val-b.val)[0];
+    const t = RATES[cheapest.key];
+    recTier.textContent = t.label;
+    const usageDollars = cu*t.cu + gb*t.proxy;
+    recDetail.textContent = usageDollars > t.sub
+      ? `Using $${usageDollars.toFixed(2)} of platform usage — over the $${t.sub} included, billed pay-as-you-go at this tier's rate.`
+      : `Using $${usageDollars.toFixed(2)} of the $${t.sub} included — well inside the flat fee.`;
+
+    costRows.innerHTML = '';
+    costs.forEach(c => {
+      const t2 = RATES[c.key];
+      const row = document.createElement('div');
+      row.className = 'cost-row' + (c.key === cheapest.key ? ' win' : '');
+      row.innerHTML = `<span class="cr-name"><span class="swatch" style="background:${resolveColor(t2.color)}"></span>${t2.label}</span><span class="cr-val">${fmtMoney(c.val)}/mo</span>`;
+      costRows.appendChild(row);
+    });
+  }
+
+  // ---- chart ----
+  const W = 720, H = 380, M = {top:20, right:20, bottom:36, left:64};
+  const plotW = W - M.left - M.right, plotH = H - M.top - M.bottom;
+
+  function findCrossovers(gb, xMax){
+    const steps = 400;
+    const crossings = [];
+    for(let p=0; p<ORDER.length; p++){
+      for(let q=p+1; q<ORDER.length; q++){
+        let prevDiff = null;
+        for(let i=0;i<=steps;i++){
+          const cu = xMax * i/steps;
+          const diff = cost(ORDER[p], cu, gb) - cost(ORDER[q], cu, gb);
+          if(prevDiff !== null && ((prevDiff<0 && diff>=0) || (prevDiff>0 && diff<=0))){
+            const cuPrev = xMax*(i-1)/steps;
+            const frac = Math.abs(prevDiff)/(Math.abs(prevDiff)+Math.abs(diff) || 1);
+            const cuCross = cuPrev + (cu-cuPrev)*frac;
+            crossings.push({cu: cuCross, cost: cost(ORDER[p], cuCross, gb), a: ORDER[p], b: ORDER[q]});
+          }
+          prevDiff = diff;
+        }
+      }
+    }
+    return crossings;
+  }
+
+  function render(){
+    updateRecommendation();
+    const cu = Math.max(0, Number(cuInput.value) || 0);
+    const gb = Math.max(0, Number(gbInput.value) || 0);
+    const xMax = Math.max(2000, cu * 1.6, 8000);
+    const steps = 120;
+
+    let yMax = 0;
+    const series = {};
+    ORDER.forEach(k => {
+      const pts = [];
+      for(let i=0;i<=steps;i++){
+        const x = xMax*i/steps;
+        const y = cost(k, x, gb);
+        pts.push([x,y]);
+        if(y>yMax) yMax = y;
+      }
+      series[k] = pts;
+    });
+    yMax = yMax * 1.12;
+
+    const sx = v => M.left + (v/xMax)*plotW;
+    const sy = v => M.top + plotH - (v/yMax)*plotH;
+
+    let svgParts = [];
+
+    // gridlines
+    const yTicks = 5;
+    for(let i=0;i<=yTicks;i++){
+      const val = yMax*i/yTicks;
+      const y = sy(val);
+      svgParts.push(`<line class="grid-line" x1="${M.left}" y1="${y}" x2="${W-M.right}" y2="${y}"/>`);
+      svgParts.push(`<text class="axis-label" x="${M.left-8}" y="${y+3}" text-anchor="end">$${Math.round(val).toLocaleString()}</text>`);
+    }
+    const xTicks = 5;
+    for(let i=0;i<=xTicks;i++){
+      const val = xMax*i/xTicks;
+      const x = sx(val);
+      svgParts.push(`<text class="axis-label" x="${x}" y="${H-M.bottom+18}" text-anchor="middle">${Math.round(val).toLocaleString()}</text>`);
+    }
+    svgParts.push(`<text class="axis-label" x="${M.left+plotW/2}" y="${H-4}" text-anchor="middle">Compute units / month (CU)</text>`);
+
+    // axes
+    svgParts.push(`<line class="grid-line" x1="${M.left}" y1="${M.top}" x2="${M.left}" y2="${H-M.bottom}"/>`);
+    svgParts.push(`<line class="grid-line" x1="${M.left}" y1="${H-M.bottom}" x2="${W-M.right}" y2="${H-M.bottom}"/>`);
+
+    // lines
+    ORDER.forEach(k => {
+      const color = resolveColor(RATES[k].color);
+      const d = series[k].map((p,i) => `${i===0?'M':'L'}${sx(p[0]).toFixed(1)},${sy(p[1]).toFixed(1)}`).join(' ');
+      svgParts.push(`<path class="tier-line" d="${d}" stroke="${color}"/>`);
+      const last = series[k][series[k].length-1];
+      svgParts.push(`<text class="end-label" x="${sx(last[0])-6}" y="${sy(last[1])-8}" text-anchor="end" fill="${color}">${RATES[k].label}</text>`);
+    });
+
+    // crossovers
+    const crossings = findCrossovers(gb, xMax);
+    crossings.forEach(c => {
+      if(c.cu <=0 || c.cu >= xMax) return;
+      const x = sx(c.cu), y = sy(c.cost);
+      svgParts.push(`<circle class="crossover-dot" cx="${x}" cy="${y}" r="4.5" stroke="${resolveColor('--ink-muted')}"/>`);
+      svgParts.push(`<text class="crossover-label" x="${x}" y="${y-10}" text-anchor="middle" fill="${resolveColor('--ink-soft')}">${Math.round(c.cu).toLocaleString()} CU</text>`);
+    });
+
+    // current usage marker
+    const markX = sx(Math.min(cu, xMax));
+    svgParts.push(`<line class="grid-line" x1="${markX}" y1="${M.top}" x2="${markX}" y2="${H-M.bottom}" stroke="${resolveColor('--accent')}" stroke-dasharray="4 3" opacity="0.6"/>`);
+
+    // hover interaction layer
+    svgParts.push(`<rect id="hoverCatcher" x="${M.left}" y="${M.top}" width="${plotW}" height="${plotH}" fill="transparent"/>`);
+    svgParts.push(`<line id="hoverLine" class="hover-line" x1="0" y1="${M.top}" x2="0" y2="${H-M.bottom}"/>`);
+    ORDER.forEach(k => {
+      svgParts.push(`<circle id="hoverDot-${k}" class="hover-dot" r="4" fill="${resolveColor(RATES[k].color)}" stroke="${resolveColor('--surface')}" stroke-width="2"/>`);
+    });
+
+    svg.innerHTML = svgParts.join('');
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+    // wire hover
+    const catcher = svg.querySelector('#hoverCatcher');
+    const hoverLine = svg.querySelector('#hoverLine');
+    catcher.addEventListener('mousemove', (e) => {
+      const rect = svg.getBoundingClientRect();
+      const px = (e.clientX - rect.left) * (W / rect.width);
+      const xVal = Math.max(0, Math.min(xMax, (px - M.left) / plotW * xMax));
+      const x = sx(xVal);
+      hoverLine.setAttribute('x1', x); hoverLine.setAttribute('x2', x);
+      hoverLine.style.opacity = 1;
+      let lines = [`<div style="margin-bottom:4px;color:var(--muted-chip)">${Math.round(xVal).toLocaleString()} CU/mo</div>`];
+      ORDER.forEach(k => {
+        const y = sy(cost(k, xVal, gb));
+        const dot = svg.querySelector('#hoverDot-'+k);
+        dot.setAttribute('cx', x); dot.setAttribute('cy', y);
+        dot.style.opacity = 1;
+        lines.push(`<div>${RATES[k].label}: ${fmtMoney(cost(k,xVal,gb))}</div>`);
+      });
+      tooltip.innerHTML = lines.join('');
+      tooltip.style.opacity = 1;
+      const wrapRect = svg.parentElement.getBoundingClientRect();
+      tooltip.style.left = Math.min(wrapRect.width-140, Math.max(0,(x/W)*wrapRect.width+8)) + 'px';
+      tooltip.style.top = Math.max(0,(sy(yMax*0.05)/H)*wrapRect.height) + 'px';
+    });
+    catcher.addEventListener('mouseleave', () => {
+      hoverLine.style.opacity = 0;
+      tooltip.style.opacity = 0;
+      ORDER.forEach(k => { svg.querySelector('#hoverDot-'+k).style.opacity = 0; });
+    });
+  }
+
+  render();
+  window.addEventListener('resize', render);
+
+  // tab nav active state
+  const tabLinks = [...document.querySelectorAll('#tabbar a')];
+  const sections = tabLinks.map(a => document.querySelector(a.getAttribute('href')));
+  function updateTabs(){
+    let current = sections[0];
+    sections.forEach(s => { if(s.getBoundingClientRect().top - 80 <= 0) current = s; });
+    tabLinks.forEach(a => a.classList.toggle('current', document.querySelector(a.getAttribute('href')) === current));
+  }
+  document.addEventListener('scroll', updateTabs, {passive:true});
+  updateTabs();
+})();
+</script>
