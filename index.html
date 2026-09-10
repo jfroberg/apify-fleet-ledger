@@ -1,3 +1,5 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Punchout Fleet Ledger</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
@@ -72,15 +74,6 @@ header.hero h1{font-size:clamp(1.7rem,4vw,2.4rem); font-weight:700;}
 .source-note{margin-top:12px; color:var(--ink-muted); font-size:0.86rem; max-width:66ch;}
 .source-note b{color:var(--ink-soft); font-weight:600;}
 
-/* ---- stat tiles ---- */
-.stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-top:22px; box-shadow:var(--shadow);}
-.stat{background:var(--surface); padding:18px 18px 16px;}
-.stat .label{font-size:0.76rem; color:var(--ink-muted); text-transform:uppercase; letter-spacing:.06em; font-weight:600;}
-.stat .value{font-family:"IBM Plex Mono"; font-size:1.7rem; font-weight:600; margin-top:6px; color:var(--ink); font-variant-numeric:tabular-nums;}
-.stat .value .unit{font-size:0.95rem; color:var(--ink-muted); font-weight:500;}
-.stat .sub{font-size:0.8rem; color:var(--ink-muted); margin-top:4px;}
-@media (max-width:680px){.stats{grid-template-columns:1fr;}}
-
 /* ---- usage cap alert ---- */
 .usage-alert{margin-top:18px; background:var(--amber-soft); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; box-shadow:var(--shadow);}
 .usage-alert .ua-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap;}
@@ -106,8 +99,9 @@ th{background:var(--surface-2); color:var(--ink-soft); font-weight:600; font-siz
 td.num, th.num{text-align:right; font-family:"IBM Plex Mono"; font-variant-numeric:tabular-nums;}
 tbody tr:nth-child(even){background:var(--surface-2);}
 tbody tr:last-child td{border-bottom:none;}
-td.wrap-cell, th.wrap-cell{white-space:normal; min-width:240px;}
+td.wrap-cell, th.wrap-cell{white-space:normal; min-width:220px;}
 .row-highlight td{background:var(--accent-soft) !important;}
+.total-row td{font-weight:700; background:var(--surface-3) !important; border-top:2px solid var(--border);}
 .foot-note{font-size:0.8rem; color:var(--ink-muted); margin-top:10px; max-width:70ch;}
 
 /* ---- chips ---- */
@@ -124,21 +118,29 @@ td.wrap-cell, th.wrap-cell{white-space:normal; min-width:240px;}
 .chip.good{background:var(--good-soft); color:var(--good);}
 .chip.good::before{background:var(--good);}
 
-/* ---- calculator ---- */
-.calc-panel{display:grid; grid-template-columns:280px 1fr; gap:24px; margin-top:18px; align-items:start;}
+/* ---- schedule projector ---- */
+.projector-table input[type="number"]{
+  width:78px; padding:5px 7px; border:1px solid var(--border); border-radius:6px;
+  background:var(--bg); color:var(--ink); font-family:"IBM Plex Mono"; font-size:0.85rem;
+  font-variant-numeric:tabular-nums;
+}
+.projector-table input.needs-estimate{border-color:var(--amber); background:var(--amber-soft);}
+.projector-table select{
+  padding:5px 8px; border:1px solid var(--border); border-radius:6px;
+  background:var(--bg); color:var(--ink); font-size:0.85rem; font-family:"Source Sans 3";
+}
+.projector-table td{white-space:nowrap;}
+
+/* ---- calculator / recommend box (shared) ---- */
+.calc-panel{display:grid; grid-template-columns:280px 1fr; gap:24px; margin-top:22px; align-items:start;}
 @media (max-width:820px){.calc-panel{grid-template-columns:1fr;}}
 .calc-inputs{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:16px;}
-.field label{display:block; font-size:0.8rem; font-weight:600; color:var(--ink-soft); margin-bottom:5px;}
-.field .hint{font-size:0.76rem; color:var(--ink-muted); margin-top:4px;}
-.field input[type="number"]{
-  width:100%; padding:9px 10px; border:1px solid var(--border); border-radius:7px;
-  background:var(--bg); color:var(--ink); font-family:"IBM Plex Mono"; font-size:0.95rem;
-}
-.field input[type="range"]{width:100%; accent-color:var(--accent); margin-top:6px;}
 .recommend{border-radius:10px; padding:14px 16px; background:var(--accent-soft); border:1px solid var(--accent); }
 .recommend .r-label{font-size:0.74rem; text-transform:uppercase; letter-spacing:.05em; color:var(--accent-strong); font-weight:700;}
 .recommend .r-tier{font-family:"Source Serif 4"; font-size:1.4rem; font-weight:700; color:var(--ink); margin-top:2px;}
 .recommend .r-detail{font-size:0.83rem; color:var(--ink-soft); margin-top:4px;}
+.totals-mini{display:flex; flex-direction:column; gap:4px; font-size:0.82rem; color:var(--ink-soft); padding:10px 12px; background:var(--surface-2); border-radius:8px;}
+.totals-mini b{color:var(--ink); font-family:"IBM Plex Mono";}
 .cost-rows{display:flex; flex-direction:column; gap:8px; margin-top:4px;}
 .cost-row{display:flex; justify-content:space-between; align-items:center; padding:7px 10px; border-radius:7px; background:var(--surface-2); font-size:0.85rem;}
 .cost-row.win{background:var(--good-soft); outline:1px solid var(--good);}
@@ -152,7 +154,6 @@ svg#chart{width:100%; height:auto; overflow:visible;}
 .axis-label{font-size:10px; fill:var(--ink-muted); font-family:"IBM Plex Mono", monospace;}
 .grid-line{stroke:var(--border); stroke-width:1;}
 .tier-line{fill:none; stroke-width:2.25;}
-.tier-dot{stroke:var(--surface); stroke-width:2;}
 .crossover-dot{fill:var(--surface); stroke-width:2;}
 .crossover-label{font-size:10.5px; font-family:"IBM Plex Mono"; font-weight:600;}
 .end-label{font-size:11.5px; font-family:"Source Sans 3"; font-weight:700;}
@@ -180,99 +181,87 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
 
 <nav class="tabbar" id="tabbar">
   <a href="#overview">Overview</a>
-  <a href="#usage">Current usage</a>
+  <a href="#projector">Schedule projector</a>
   <a href="#tiers">Plan tiers</a>
-  <a href="#proxy">Proxy costs</a>
-  <a href="#storage">Storage &amp; transfer</a>
+  <a href="#proxy">Proxy &amp; storage</a>
   <a href="#projects">Project audit</a>
-  <a href="#calculator">Breakeven calculator</a>
   <a href="#recommendation">Recommendation</a>
 </nav>
 
 <header class="hero" id="overview">
   <div class="eyebrow">UMich Procurement · Apify platform</div>
   <h1>Punchout Fleet Ledger</h1>
-  <p class="source-note"><b>Pricing source:</b> Apify public pricing page and the Apify Console "Change subscription" view, reviewed 2026&#8209;09&#8209;10. Prices are monthly unless noted. Subscription fees are a prepaid usage credit — usage beyond it is billed pay-as-you-go on paid plans at that plan's rate, and unused credit does not roll over. <b>Fleet data</b> (proxy column, build status) was read directly out of each actor's <code class="mono">.actor/input_schema.json</code> and <code class="mono">main.py</code> in this repo, not estimated. <b>Usage data</b> was pulled live from the Apify account API (<code class="mono">umich_bf_procurement</code>) on 2026&#8209;09&#8209;10 — actual runs, actual dollars, not projections.</p>
+  <p class="source-note">This models what the fleet actually costs if every scraper runs on a <b>recurring schedule</b> — pick a frequency per actor in the projector below, using each one's real recorded run cost as the starting estimate, and see the total CU/proxy spend and which Apify tier is cheapest for it. <b>Pricing source:</b> Apify public pricing page, reviewed 2026&#8209;09&#8209;10. <b>Fleet &amp; usage data:</b> read from this repo's actor source and the live Apify account API (<code class="mono">umich_bf_procurement</code>), refreshed daily by a GitHub Action.</p>
 
-  <div class="stats">
-    <div class="stat">
-      <div class="label">Actors running proxy today</div>
-      <div class="value">3<span class="unit"> / 13</span></div>
-      <div class="sub">Grainger, Fisher, Jemtech ship RESIDENTIAL proxy pre-enabled. Actual cloud runs this cycle show just 1.28 GB drawn — see Current usage.</div>
+  <div class="usage-alert" id="usageAlertBox">
+    <div class="ua-head">
+      <span class="ua-title" id="capTitle">⚠ Billing-cycle usage cap</span>
+      <span class="ua-figure" id="capFigure">— / —</span>
     </div>
-    <div class="stat">
-      <div class="label">Starter → Scale breakeven</div>
-      <div class="value">995<span class="unit"> CU/mo</span></div>
-      <div class="sub">Below this, Starter's pay-as-you-go is cheaper than Scale's flat $199. Above it, Scale wins.</div>
-    </div>
-    <div class="stat">
-      <div class="label">Scale → Business breakeven</div>
-      <div class="value">6,244<span class="unit"> CU/mo</span></div>
-      <div class="sub">Roughly 6× the current fleet's likely monthly volume — see the calculator for your own numbers.</div>
-    </div>
+    <div class="progress-track"><div class="progress-fill" id="capFill" style="width:0%"></div></div>
+    <p id="capNote">Loading current cycle data…</p>
   </div>
 </header>
 
-<section id="usage">
-  <div class="section-head"><h2>Current usage</h2><span class="section-tag">live from Apify, 2026-09-10</span></div>
-  <p class="dek">Pulled directly from the <code class="mono">umich_bf_procurement</code> account's billing API — not a model, the actual meter. One correction to the tables above: Apify's billing API reports this account's real Starter base price as <b>$29/month</b>, not the $19 the public pricing page states. Trust this over the marketing page — either Apify quietly raised Starter's price, or the account is on an older plan version (<code class="mono">planVersion 13</code>). The $0.20/CU compute rate and $8.00/GB residential proxy rate do match the public Starter numbers exactly.</p>
+<section id="projector">
+  <div class="section-head"><h2>Schedule projector</h2><span class="section-tag" id="usageAsOf">loading…</span></div>
+  <p class="dek">CU/run and proxy GB/run are pre-filled from each actor's <b>largest recorded run</b> on the Apify account — real billed usage, not a guess. Actors with no cloud-run history yet show <span class="chip on">needs estimate</span> — type a number to include them. Edit any field; frequency drives the projection, everything below recalculates live.</p>
 
-  <div class="usage-alert">
-    <div class="ua-head">
-      <span class="ua-title">⚠ Billing-cycle usage cap: close to the ceiling</span>
-      <span class="ua-figure">$125.31 / $150.00</span>
-    </div>
-    <div class="progress-track"><div class="progress-fill" style="width:83.5%"></div></div>
-    <p>Current cycle runs Aug 26 – Sep 25, 2026. At 15 of 30 days elapsed, the account has already used <b>83.5%</b> of its $150 monthly usage cap. At the trailing burn rate (~$8.35/day), the cap is on pace to be hit around <b>Sep 13–14</b> — roughly two weeks before the cycle resets — which would pause every actor's runs until either the cap is raised or the cycle turns over. Raising <code class="mono">maxMonthlyUsageUsd</code> in the Apify Console is the immediate fix if runs need to keep going.</p>
-  </div>
-
-  <div class="stats" style="margin-top:18px;">
-    <div class="stat">
-      <div class="label">Compute used this cycle</div>
-      <div class="value">481<span class="unit"> CU</span></div>
-      <div class="sub">of a 1,999,999 CU plan ceiling — CU itself is nowhere near the limit; dollars are.</div>
-    </div>
-    <div class="stat">
-      <div class="label">Residential proxy used</div>
-      <div class="value">1.28<span class="unit"> GB</span></div>
-      <div class="sub">≈$10.25 of the cycle's spend — small next to compute, but 100% of it comes from actors that ran with proxy input actually filled in at run time.</div>
-    </div>
-    <div class="stat">
-      <div class="label">Active actors on the account</div>
-      <div class="value">15</div>
-      <div class="sub">13 audited below + 2 (IDT, Eurofins) with no matching folder in this repo — see note.</div>
-    </div>
-  </div>
-
-  <p class="dek" style="margin-top:22px;">Per-actor, straight from run history — not every "live" actor in the project audit below has actually executed on this account's cloud yet.</p>
   <div class="tbl-scroll">
-  <table>
-    <thead><tr><th>Actor</th><th class="num">Cloud runs</th><th class="wrap-cell">Most recent run</th><th class="wrap-cell">Largest run on record</th><th class="num">Lifetime spend</th></tr></thead>
-    <tbody>
-      <tr><td>B&amp;H</td><td class="num">24</td><td class="wrap-cell">✅ succeeded · <b>$38.27</b> · 181.2 CU · 22.7 hr</td><td class="wrap-cell">same run — its most recent run is also its biggest</td><td class="num">$67.98</td></tr>
-      <tr><td>Mozart / Medline</td><td class="num">8</td><td class="wrap-cell">🛑 aborted · $16.84 burned before stopping</td><td class="wrap-cell">🛑 aborted · $16.84 (same run) · last clean success was a $0.09 test</td><td class="num">$21.87</td></tr>
-      <tr><td>Fisher Scientific</td><td class="num">33</td><td class="wrap-cell">✅ succeeded · $0.07 · 3.4 min (small resume/patch run)</td><td class="wrap-cell">⏱ timed out · $6.35 — the 1.83M-row catalog was built by chaining many runs like this, not one clean pass</td><td class="num">$31.12</td></tr>
-      <tr><td>DigiKey</td><td class="num">13</td><td class="wrap-cell">✅ succeeded · $0.02 · 1.3 min</td><td class="wrap-cell">⏱ timed out · $0.80</td><td class="num">$1.47</td></tr>
-      <tr><td>CST</td><td class="num">2</td><td class="wrap-cell">✅ succeeded · $0.20 · 3.0 min</td><td class="wrap-cell">same run</td><td class="num">$0.21</td></tr>
-      <tr><td>Ferguson</td><td class="num">1</td><td class="wrap-cell">✅ succeeded · $0.03 · 2.4 min</td><td class="wrap-cell">same run — only one run exists yet</td><td class="num">$0.03</td></tr>
-      <tr><td>AVI</td><td class="num">4</td><td class="wrap-cell">✅ succeeded · $0.02 · 1.3 min</td><td class="wrap-cell">same run</td><td class="num">$0.04</td></tr>
-      <tr><td>IDT <span class="chip off">not in local repo</span></td><td class="num">8</td><td class="wrap-cell">✅ succeeded · $0.01 · 3.7 min</td><td class="wrap-cell">❌ failed · $0.02</td><td class="num">$0.08</td></tr>
-      <tr><td>Eurofins <span class="chip off">not in local repo</span></td><td class="num">4</td><td class="wrap-cell">✅ succeeded · $0.01 · 3.3 min</td><td class="wrap-cell">✅ succeeded · $0.02</td><td class="num">$0.05</td></tr>
-      <tr><td>Grainger</td><td class="num">0</td><td class="wrap-cell" colspan="2">No cloud runs on this account — every verified run has been local (<code class="mono">apify run</code>), not on the Apify platform</td><td class="num">$0.00</td></tr>
-      <tr><td>Imperial Bag &amp; Paper</td><td class="num">0</td><td class="wrap-cell" colspan="2">No cloud runs on this account</td><td class="num">$0.00</td></tr>
-      <tr><td>Jagger (CDW)</td><td class="num">0</td><td class="wrap-cell" colspan="2">No cloud runs on this account</td><td class="num">$0.00</td></tr>
-      <tr><td>Sigma-Aldrich</td><td class="num">0</td><td class="wrap-cell" colspan="2">No cloud runs on this account</td><td class="num">$0.00</td></tr>
-      <tr><td>Staples</td><td class="num">0</td><td class="wrap-cell" colspan="2">No cloud runs on this account</td><td class="num">$0.00</td></tr>
-      <tr><td>Jemtech</td><td class="num">—</td><td class="wrap-cell" colspan="2">No actor exists on Apify at all — built locally, never <code class="mono">apify push</code>'d</td><td class="num">—</td></tr>
+  <table class="projector-table">
+    <thead><tr>
+      <th>Actor</th><th>Data</th>
+      <th class="num">CU / run</th><th class="num">Proxy GB / run</th>
+      <th>Frequency</th><th class="num">Runs / mo</th>
+      <th class="num">CU / mo</th><th class="num">Proxy GB / mo</th>
+    </tr></thead>
+    <tbody id="projectorBody">
+      <tr><td colspan="8">Loading actor data…</td></tr>
     </tbody>
+    <tfoot>
+      <tr class="total-row">
+        <td colspan="6">Total, all scheduled actors</td>
+        <td class="num" id="totalCU">—</td>
+        <td class="num" id="totalGB">—</td>
+      </tr>
+    </tfoot>
   </table>
   </div>
-  <p class="foot-note"><b>B&amp;H is the fleet's real cost driver</b> — one successful run costs more ($38.27) than every other actor's entire lifetime spend on this account combined. It's also running with residential proxy off, per the audit below, despite carrying the fleet's worst incident history. <b>Five actors show zero cloud executions</b> despite being marked "live" in the source audit — that status reflects the code working end-to-end locally, not a confirmed cloud run under this account; worth reconciling before calling them production-ready in the platform-usage sense. <b>Two actors (IDT, Eurofins) have no corresponding folder in this repo</b> — they exist and have run on Apify, but their source isn't here to audit for proxy usage the way the other 13 are.</p>
+  <p class="foot-note" id="projectorFallbackNote" hidden>Couldn't load <code class="mono">usage-data.json</code> live — showing the last known snapshot (2026-09-10) embedded in this page instead. On GitHub Pages this refreshes automatically once a day.</p>
+
+  <div class="calc-panel">
+    <div class="calc-inputs">
+      <div class="totals-mini">
+        <div>Total compute: <b id="miniCU">— CU/mo</b></div>
+        <div>Total residential proxy: <b id="miniGB">— GB/mo</b></div>
+      </div>
+      <div class="recommend" id="recommendBox">
+        <div class="r-label">Cheapest tier at this schedule</div>
+        <div class="r-tier" id="recTier">—</div>
+        <div class="r-detail" id="recDetail">—</div>
+      </div>
+      <div class="cost-rows" id="costRows"></div>
+    </div>
+
+    <div class="chart-card">
+      <h3>Monthly cost by tier, as scheduled compute scales</h3>
+      <p class="foot-note" style="margin-top:0;">Proxy GB held at your projected total; hover the chart to explore other CU levels.</p>
+      <div class="chart-wrap">
+        <svg id="chart" viewBox="0 0 720 380" preserveAspectRatio="xMidYMid meet"></svg>
+        <div class="tooltip" id="tooltip"></div>
+      </div>
+      <div class="legend-row">
+        <span><i class="sw" style="background:var(--tier-starter)"></i>Starter ($0.20/CU · $8.00/GB)</span>
+        <span><i class="sw" style="background:var(--tier-scale)"></i>Scale ($0.16/CU · $7.50/GB)</span>
+        <span><i class="sw" style="background:var(--tier-business)"></i>Business ($0.13/CU · $7.00/GB)</span>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="tiers">
   <div class="section-head"><h2>Plan tiers</h2><span class="section-tag">apify.com/pricing</span></div>
-  <p class="dek">The subscription price <em>is</em> the prepaid usage balance — Starter's $19 buys 95 CU before pay-as-you-go kicks in at the same $0.20/CU rate. Higher tiers don't add a discount on top of a fee; they lower the per-unit rate for every dollar you spend.</p>
+  <p class="dek">The subscription price <em>is</em> the prepaid usage balance — Starter's $19 buys 95 CU before pay-as-you-go kicks in at the same $0.20/CU rate. Higher tiers don't add a discount on top of a fee; they lower the per-unit rate for every dollar you spend. (This account's real billing API reports its Starter base price as <b id="planBasePrice">$29</b>/month, not the $19 the public page states — trust the live account over the marketing page.)</p>
   <div class="tbl-scroll">
   <table>
     <thead><tr><th>Category</th><th class="num">Free</th><th class="num">Starter</th><th class="num">Scale</th><th class="num">Business</th><th class="num">Enterprise</th></tr></thead>
@@ -286,47 +275,35 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
       <tr><td>Max Actor RAM</td><td class="num">16 GB</td><td class="num">64 GB</td><td class="num">256 GB</td><td class="num">512 GB</td><td class="num">Unlimited</td></tr>
       <tr><td>Max concurrent runs</td><td class="num">5</td><td class="num">32</td><td class="num">128</td><td class="num">256</td><td class="num">Unlimited</td></tr>
       <tr><td>Support</td><td class="num">Community</td><td class="num">Chat</td><td class="num">Priority chat</td><td class="num">Account manager</td><td class="num">Dedicated team</td></tr>
-      <tr><td>Technical training</td><td class="num">—</td><td class="num">$150/hr</td><td class="num">1 hr/quarter</td><td class="num">1 hr/month</td><td class="num">Custom</td></tr>
       <tr><td>Single sign-on</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">Custom</td></tr>
     </tbody>
   </table>
   </div>
-  <p class="foot-note">The fleet's actors run one supplier scrape at a time, sequentially — none has ever needed more than a handful of concurrent runs or more than a few GB of Actor RAM. Concurrency and RAM ceilings are not the constraint for this program at any tier; total monthly dollar spend is. That's why the calculator below only models spend.</p>
+  <p class="foot-note">The fleet's actors run one supplier scrape at a time, sequentially — none has ever needed more than a handful of concurrent runs or more than a few GB of Actor RAM. Concurrency and RAM ceilings aren't the constraint at any tier; total monthly dollar spend is, which is what the projector models.</p>
 </section>
 
 <section id="proxy">
-  <div class="section-head"><h2>Proxy costs</h2><span class="section-tag">per tier</span></div>
-  <p class="dek">Residential proxy is the line item that actually moves the needle for this fleet — three actors depend on it to get past WAFs that block Apify's datacenter IP range outright.</p>
+  <div class="section-head"><h2>Proxy &amp; storage costs</h2><span class="section-tag">per tier</span></div>
+  <p class="dek">Residential proxy is the line item that actually competes with compute for budget — three actors depend on it to get past WAFs that block Apify's datacenter IP range outright. Storage/transfer rates are here for completeness; they're small next to compute and proxy at this fleet's volumes, so the projector doesn't model them separately.</p>
   <div class="tbl-scroll">
   <table>
-    <thead><tr><th>Proxy product</th><th class="num">Starter</th><th class="num">Scale</th><th class="num">Business</th><th class="num">Enterprise</th></tr></thead>
+    <thead><tr><th>Proxy product</th><th class="num">Starter</th><th class="num">Scale</th><th class="num">Business</th></tr></thead>
     <tbody>
-      <tr class="row-highlight"><td>Residential proxy</td><td class="num">$8.00/GB</td><td class="num">$7.50/GB</td><td class="num">$7.00/GB</td><td class="num">Custom</td></tr>
-      <tr><td>Included datacenter IPs</td><td class="num">30</td><td class="num">200</td><td class="num">500</td><td class="num">Custom</td></tr>
-      <tr><td>Additional datacenter IP</td><td class="num">$1.00/IP</td><td class="num">$0.80/IP</td><td class="num">$0.60/IP</td><td class="num">Custom</td></tr>
-      <tr><td>Google SERP proxy</td><td class="num">$2.50/1,000</td><td class="num">$2.00/1,000</td><td class="num">$1.70/1,000</td><td class="num">Custom</td></tr>
-      <tr><td>Unblocker</td><td class="num">$1.50/1,000 req</td><td class="num">$1.25/1,000 req</td><td class="num">$1.00/1,000 req</td><td class="num">Custom</td></tr>
+      <tr class="row-highlight"><td>Residential proxy</td><td class="num">$8.00/GB</td><td class="num">$7.50/GB</td><td class="num">$7.00/GB</td></tr>
+      <tr><td>Included datacenter IPs</td><td class="num">30</td><td class="num">200</td><td class="num">500</td></tr>
+      <tr><td>Additional datacenter IP</td><td class="num">$1.00/IP</td><td class="num">$0.80/IP</td><td class="num">$0.60/IP</td></tr>
+      <tr><td>Google SERP proxy</td><td class="num">$2.50/1,000</td><td class="num">$2.00/1,000</td><td class="num">$1.70/1,000</td></tr>
+      <tr><td>Unblocker</td><td class="num">$1.50/1,000 req</td><td class="num">$1.25/1,000 req</td><td class="num">$1.00/1,000 req</td></tr>
     </tbody>
   </table>
   </div>
-  <p class="foot-note">Datacenter proxy IPs (used by none of the fleet's actors today) are essentially free at every tier's included allowance. Residential is the one that competes with compute for budget — and its rate drops on the same schedule as the CU rate, so it's part of the same tier decision, not a separate one. That's why the calculator combines both.</p>
-</section>
-
-<section id="storage">
-  <div class="section-head"><h2>Storage &amp; data transfer</h2><span class="section-tag">unit-cost reference</span></div>
-  <p class="dek">Small relative to compute and proxy at this fleet's volumes — kept here for completeness, not modeled in the calculator.</p>
-  <div class="tbl-scroll">
+  <div class="tbl-scroll" style="margin-top:14px;">
   <table>
-    <thead><tr><th>Service · unit</th><th class="num">Starter</th><th class="num">Scale</th><th class="num">Business</th></tr></thead>
+    <thead><tr><th>Storage &amp; transfer, per unit</th><th class="num">Starter</th><th class="num">Scale</th><th class="num">Business</th></tr></thead>
     <tbody>
       <tr><td>Dataset storage, 1,000 GB-hr</td><td class="num">$1.00</td><td class="num">$0.90</td><td class="num">$0.80</td></tr>
-      <tr><td>Dataset reads, 1,000 ops</td><td class="num">$0.0004</td><td class="num">$0.00036</td><td class="num">$0.00032</td></tr>
-      <tr><td>Dataset writes, 1,000 ops</td><td class="num">$0.005</td><td class="num">$0.0045</td><td class="num">$0.004</td></tr>
       <tr><td>Key-value storage, 1,000 GB-hr</td><td class="num">$1.00</td><td class="num">$0.90</td><td class="num">$0.80</td></tr>
-      <tr><td>Key-value reads, 1,000 ops</td><td class="num">$0.005</td><td class="num">$0.0045</td><td class="num">$0.004</td></tr>
-      <tr><td>Key-value writes, 1,000 ops</td><td class="num">$0.05</td><td class="num">$0.045</td><td class="num">$0.04</td></tr>
       <tr><td>Request-queue storage, 1,000 GB-hr</td><td class="num">$4.00</td><td class="num">$3.60</td><td class="num">$3.20</td></tr>
-      <tr><td>Request-queue writes, 1,000 ops</td><td class="num">$0.01</td><td class="num">$0.009</td><td class="num">$0.008</td></tr>
       <tr><td>External data transfer, per GB</td><td class="num">$0.20</td><td class="num">$0.19</td><td class="num">$0.18</td></tr>
       <tr><td>Internal data transfer, per GB</td><td class="num">$0.05</td><td class="num">$0.045</td><td class="num">$0.04</td></tr>
     </tbody>
@@ -336,7 +313,7 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
 
 <section id="projects">
   <div class="section-head"><h2>Project proxy audit</h2><span class="section-tag">read from source, 2026-09-10</span></div>
-  <p class="dek">Every row below was read out of that actor's own <code class="mono">input_schema.json</code> and <code class="mono">main.py</code> — not inferred. "Prefilled" means the Console pre-checks RESIDENTIAL when the actor is opened, so it bills on every run unless someone clears it.</p>
+  <p class="dek">Every row below was read out of that actor's own <code class="mono">input_schema.json</code> and <code class="mono">main.py</code> — not inferred. "Prefilled" means the Console pre-checks RESIDENTIAL when the actor is opened, so it bills on every run unless someone clears it. This is independent of the schedule projector above, which models real recorded run cost regardless of why proxy is or isn't on.</p>
   <div class="tbl-scroll">
   <table>
     <thead><tr><th>Supplier actor</th><th>Build status</th><th>Proxy default</th><th class="wrap-cell">Why (from source)</th></tr></thead>
@@ -358,49 +335,7 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
     </tbody>
   </table>
   </div>
-  <p class="foot-note">Net: 3 of 13 built actors spend real proxy dollars today. 8 have the switch wired in and confirmed off. 2 have no switch at all. Re-testing B&amp;H with RESIDENTIAL on is the one open question this audit surfaces — its silent-drain history doesn't match its current "off" default.</p>
-</section>
-
-<section id="calculator">
-  <div class="section-head"><h2>Breakeven calculator</h2><span class="section-tag">combined CU + residential proxy spend</span></div>
-  <p class="dek">Apify's prepaid credit is one shared balance — a dollar of proxy usage and a dollar of compute draw from the exact same pool. So the real question isn't "how much CU," it's <em>total monthly platform spend</em> at each tier's rate card, compared against that tier's subscription price. Pre-filled below with this cycle's actual measured usage (Aug 26–Sep 25, 2026) — adjust to model a different month.</p>
-
-  <div class="calc-panel">
-    <div class="calc-inputs">
-      <div class="field">
-        <label for="cuInput">Compute units / month</label>
-        <input type="number" id="cuInput" value="481" min="0" step="10">
-        <input type="range" id="cuRange" value="481" min="0" max="8000" step="10">
-        <div class="hint">1 CU = 1 GB RAM for 1 hour. Pre-filled with this cycle's actual usage — Apify Console → Billing → Usage has the current figure going forward.</div>
-      </div>
-      <div class="field">
-        <label for="gbInput">Residential proxy / month (GB)</label>
-        <input type="number" id="gbInput" value="1.3" min="0" step="0.1">
-        <input type="range" id="gbRange" value="1.3" min="0" max="200" step="0.1">
-        <div class="hint">This cycle's actual residential draw, almost entirely from B&amp;H, Fisher, and Grainger runs where proxy was actually filled in.</div>
-      </div>
-      <div class="recommend" id="recommendBox">
-        <div class="r-label">Cheapest tier at this usage</div>
-        <div class="r-tier" id="recTier">—</div>
-        <div class="r-detail" id="recDetail">—</div>
-      </div>
-      <div class="cost-rows" id="costRows"></div>
-    </div>
-
-    <div class="chart-card">
-      <h3>Monthly cost by tier, as compute scales</h3>
-      <p class="foot-note" style="margin-top:0;">Proxy GB held at your input above; drag along the CU axis via the slider or hover the chart.</p>
-      <div class="chart-wrap">
-        <svg id="chart" viewBox="0 0 720 380" preserveAspectRatio="xMidYMid meet"></svg>
-        <div class="tooltip" id="tooltip"></div>
-      </div>
-      <div class="legend-row">
-        <span><i class="sw" style="background:var(--tier-starter)"></i>Starter ($0.20/CU · $8.00/GB)</span>
-        <span><i class="sw" style="background:var(--tier-scale)"></i>Scale ($0.16/CU · $7.50/GB)</span>
-        <span><i class="sw" style="background:var(--tier-business)"></i>Business ($0.13/CU · $7.00/GB)</span>
-      </div>
-    </div>
-  </div>
+  <p class="foot-note">Net: 3 of 13 built actors are configured to spend real proxy dollars. 8 have the switch wired in and confirmed off. 2 have no switch at all. Re-testing B&amp;H with RESIDENTIAL on is the one open question this audit surfaces — its silent-drain history doesn't match its current "off" default.</p>
 </section>
 
 <section id="recommendation">
@@ -408,40 +343,35 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
   <div class="rec-grid">
     <div class="rec-card" style="border-color:var(--amber); background:var(--amber-soft);">
       <h4>Raise the usage cap this week</h4>
-      <p>83.5% of the $150 monthly cap is already spent with 15 days left in the cycle. On current pace, every actor's runs pause around Sep 13–14 until the cap is raised or the cycle resets Sep 25.</p>
-      <div class="why">This is a tier-independent setting in Console → Billing, and it's the only finding here with an actual deadline.</div>
+      <p id="recCapCard">Checking current cap status…</p>
+      <div class="why">This is a tier-independent setting in Console → Billing, and it's the one finding here with an actual deadline.</div>
     </div>
     <div class="rec-card">
-      <h4>Stay on Starter</h4>
-      <p>13 actors, single-run-at-a-time, mostly zero-DOM API calls. 32 concurrent runs and 64 GB Actor RAM are far beyond what this fleet has ever asked for.</p>
-      <div class="why">Move to Scale only once trailing monthly spend is consistently pushing past ~$150–190, i.e. approaching the $199 flat fee from below.</div>
+      <h4>Pick real frequencies above</h4>
+      <p>The tier recommendation is only as good as the schedule you set in the projector — five actors have no recorded run cost yet, so their contribution is $0 until you enter an estimate.</p>
+      <div class="why">Revisit the projector whenever a new actor ships or a schedule changes.</div>
     </div>
     <div class="rec-card">
       <h4>Re-test B&amp;H's proxy setting</h4>
       <p>It's the one actor with a live incident history (4 silent-drain events) whose proxy default doesn't match that history — everything else either needs RESIDENTIAL and has it, or has tested clean and left it off.</p>
-      <div class="why">A $7.50–8.00/GB residential run against B&amp;H is cheap insurance against another drain.</div>
-    </div>
-    <div class="rec-card">
-      <h4>Watch Grainger + Fisher + Jemtech spend</h4>
-      <p>These three carry 100% of the fleet's proxy cost. If their combined residential GB grows, the Scale-tier proxy discount ($7.50 vs $8.00/GB) starts mattering before the CU rate does.</p>
-      <div class="why">Run their actual GB/month through the calculator above whenever volume changes materially.</div>
+      <div class="why">It's also the fleet's single largest recorded run by cost — worth confirming that number is stable before scheduling it weekly or daily.</div>
     </div>
     <div class="rec-card">
       <h4>Ask about academic pricing before annual billing</h4>
-      <p>Apify discounts annual paid plans 10% and has separately mentioned institutional discounts. Get a quote before locking in a year at Starter or Scale.</p>
-      <div class="why">10% off Starter is only ~$1.90/mo — worth asking, not worth chasing.</div>
+      <p>Apify discounts annual paid plans 10% and has separately mentioned institutional discounts. Get a quote before locking in a year at any tier.</p>
+      <div class="why">10% off Starter is only ~$2/mo — worth asking, not worth chasing.</div>
     </div>
   </div>
 
   <ul class="notes">
     <li><b>Prepaid credit expires.</b> Don't upgrade a tier just to "bank" unused capacity — unused balance does not roll over to the next billing cycle.</li>
     <li><b>Rented Store Actors can bill differently.</b> Some charge per event rather than per CU; check each Actor's own pricing page before folding it into this fleet's budget.</li>
-    <li><b>Test with a representative run</b> — real auth, real page/category counts, real retries — before trusting a CU estimate. Apify's own guidance is the same: run it, then read the Billing → Usage view.</li>
+    <li><b>A single recorded run is one data point.</b> Treat the projector's CU/proxy defaults as a starting estimate, not a guarantee — a real production run against a bigger catalog or a retried WAF challenge can cost more.</li>
     <li><b>Plan limits aren't the whole governance story.</b> Credential storage, workspace ownership, access review, and data retention sit outside this pricing page entirely and are worth a separate pass with university IT.</li>
   </ul>
 </section>
 
-<footer>Built from apify.com/pricing (reviewed 2026-09-10) and this repository's actor source. Figures update if either source changes — this page does not.</footer>
+<footer>Built from apify.com/pricing (reviewed 2026-09-10), this repository's actor source, and the live Apify account API. The projector recalculates in your browser — nothing here calls any external service besides loading <code class="mono">usage-data.json</code>.</footer>
 </div>
 
 <script>
@@ -452,62 +382,88 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
     business: { label:'Business', sub:999, cu:0.13, proxy:7.00, color:'var(--tier-business)' }
   };
   const ORDER = ['starter','scale','business'];
+  const FREQS = [
+    {label:'Off',            runsPerMonth:0},
+    {label:'Quarterly',      runsPerMonth:30/90},
+    {label:'Monthly',        runsPerMonth:1},
+    {label:'Every 2 weeks',  runsPerMonth:30/14},
+    {label:'Weekly',         runsPerMonth:30/7},
+    {label:'Daily',          runsPerMonth:30},
+  ];
+  const DEFAULT_FREQ_INDEX = 4; // Weekly
+
+  // Embedded snapshot (2026-09-10) — used only if usage-data.json can't be fetched
+  // (e.g. opened as a local file, or before the refresh workflow's first run).
+  const FALLBACK_DATA = {
+    "generatedAt":"2026-09-10T17:55:08Z",
+    "account":{"username":"umich_bf_procurement","planBasePriceUsd":29,"cuRateUsd":0.2,"residentialRateUsd":8},
+    "cycle":{"startAt":"2026-08-26T00:00:00.000Z","endAt":"2026-09-25T23:59:59.999Z"},
+    "limits":{"maxMonthlyUsageUsd":150},
+    "current":{"monthlyUsageUsd":125.31,"monthlyActorComputeUnits":481.41,"monthlyResidentialProxyGbytes":1.28,"actorCount":15},
+    "actors":[
+      {"name":"B&H","inLocalRepo":true,"cloudRuns":24,"referenceRun":{"status":"SUCCEEDED","cu":181.215,"proxyGb":0}},
+      {"name":"Mozart / Medline","inLocalRepo":true,"cloudRuns":8,"referenceRun":{"status":"ABORTED","cu":79.222,"proxyGb":0}},
+      {"name":"Fisher Scientific","inLocalRepo":true,"cloudRuns":33,"referenceRun":{"status":"TIMED-OUT","cu":4.0,"proxyGb":0.639}},
+      {"name":"DigiKey","inLocalRepo":true,"cloudRuns":13,"referenceRun":{"status":"TIMED-OUT","cu":4.0,"proxyGb":0}},
+      {"name":"CST","inLocalRepo":true,"cloudRuns":2,"referenceRun":{"status":"SUCCEEDED","cu":0.201,"proxyGb":0}},
+      {"name":"Ferguson","inLocalRepo":true,"cloudRuns":1,"referenceRun":{"status":"SUCCEEDED","cu":0.158,"proxyGb":0}},
+      {"name":"AVI","inLocalRepo":true,"cloudRuns":4,"referenceRun":{"status":"SUCCEEDED","cu":0.087,"proxyGb":0}},
+      {"name":"Grainger","inLocalRepo":true,"cloudRuns":0,"referenceRun":null},
+      {"name":"Imperial Bag & Paper","inLocalRepo":true,"cloudRuns":0,"referenceRun":null},
+      {"name":"Jagger (CDW)","inLocalRepo":true,"cloudRuns":0,"referenceRun":null},
+      {"name":"Sigma-Aldrich","inLocalRepo":true,"cloudRuns":0,"referenceRun":null},
+      {"name":"Staples","inLocalRepo":true,"cloudRuns":0,"referenceRun":null},
+      {"name":"IDT","inLocalRepo":false,"cloudRuns":8,"referenceRun":{"status":"FAILED","cu":0.113,"proxyGb":0}},
+      {"name":"Eurofins","inLocalRepo":false,"cloudRuns":4,"referenceRun":{"status":"SUCCEEDED","cu":0.078,"proxyGb":0}},
+      {"name":"Jemtech","inLocalRepo":true,"cloudRuns":null,"referenceRun":null,"note":"not deployed to Apify"}
+    ]
+  };
 
   function cssVar(name){
     return getComputedStyle(document.documentElement).getPropertyValue(name.replace('var(','').replace(')','')).trim() || name;
   }
-  function resolveColor(v){
-    if(v.startsWith('var(')) return cssVar(v);
-    return v;
+  function resolveColor(v){ return v.startsWith('var(') ? cssVar(v) : v; }
+  function fmtUsd(v){ return '$' + Number(v).toFixed(2); }
+  function fmtDate(iso){
+    return new Date(iso).toLocaleDateString(undefined, {year:'numeric', month:'short', day:'numeric', timeZone:'UTC'});
   }
-
+  function fmtDateTime(iso){
+    return new Date(iso).toLocaleString(undefined, {year:'numeric', month:'short', day:'numeric', hour:'numeric', minute:'2-digit'});
+  }
   function cost(tierKey, cu, gb){
     const t = RATES[tierKey];
-    const usage = cu * t.cu + gb * t.proxy;
-    return Math.max(t.sub, usage);
+    return Math.max(t.sub, cu*t.cu + gb*t.proxy);
   }
 
-  const cuInput = document.getElementById('cuInput');
-  const cuRange = document.getElementById('cuRange');
-  const gbInput = document.getElementById('gbInput');
-  const gbRange = document.getElementById('gbRange');
   const recTier = document.getElementById('recTier');
   const recDetail = document.getElementById('recDetail');
   const costRows = document.getElementById('costRows');
   const svg = document.getElementById('chart');
   const tooltip = document.getElementById('tooltip');
+  const miniCU = document.getElementById('miniCU');
+  const miniGB = document.getElementById('miniGB');
 
-  function syncPair(a,b){
-    a.addEventListener('input', ()=>{ b.value = a.value; render(); });
-    b.addEventListener('input', ()=>{ a.value = b.value; render(); });
-  }
-  syncPair(cuInput, cuRange);
-  syncPair(gbInput, gbRange);
+  let currentCU = 0, currentGB = 0;
 
-  function fmtMoney(v){
-    return '$' + v.toLocaleString(undefined, {minimumFractionDigits: v < 1000 ? 2 : 0, maximumFractionDigits: 2});
-  }
-
-  function updateRecommendation(){
-    const cu = Math.max(0, Number(cuInput.value) || 0);
-    const gb = Math.max(0, Number(gbInput.value) || 0);
+  function updateRecommendation(cu, gb){
     const costs = ORDER.map(k => ({key:k, val: cost(k, cu, gb)}));
     const cheapest = costs.slice().sort((a,b)=>a.val-b.val)[0];
     const t = RATES[cheapest.key];
     recTier.textContent = t.label;
     const usageDollars = cu*t.cu + gb*t.proxy;
     recDetail.textContent = usageDollars > t.sub
-      ? `Using $${usageDollars.toFixed(2)} of platform usage — over the $${t.sub} included, billed pay-as-you-go at this tier's rate.`
-      : `Using $${usageDollars.toFixed(2)} of the $${t.sub} included — well inside the flat fee.`;
+      ? `${Math.round(cu)} CU + ${gb.toFixed(1)} GB proxy/mo = $${usageDollars.toFixed(2)} — over the $${t.sub} included, billed pay-as-you-go.`
+      : `${Math.round(cu)} CU + ${gb.toFixed(1)} GB proxy/mo = $${usageDollars.toFixed(2)} — well inside the $${t.sub} included.`;
 
     costRows.innerHTML = '';
     costs.forEach(c => {
       const t2 = RATES[c.key];
       const row = document.createElement('div');
       row.className = 'cost-row' + (c.key === cheapest.key ? ' win' : '');
-      row.innerHTML = `<span class="cr-name"><span class="swatch" style="background:${resolveColor(t2.color)}"></span>${t2.label}</span><span class="cr-val">${fmtMoney(c.val)}/mo</span>`;
+      row.innerHTML = `<span class="cr-name"><span class="swatch" style="background:${resolveColor(t2.color)}"></span>${t2.label}</span><span class="cr-val">${fmtUsd(c.val)}/mo</span>`;
       costRows.appendChild(row);
     });
+    return cheapest.key;
   }
 
   // ---- chart ----
@@ -515,8 +471,7 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
   const plotW = W - M.left - M.right, plotH = H - M.top - M.bottom;
 
   function findCrossovers(gb, xMax){
-    const steps = 400;
-    const crossings = [];
+    const steps = 400, crossings = [];
     for(let p=0; p<ORDER.length; p++){
       for(let q=p+1; q<ORDER.length; q++){
         let prevDiff = null;
@@ -527,7 +482,7 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
             const cuPrev = xMax*(i-1)/steps;
             const frac = Math.abs(prevDiff)/(Math.abs(prevDiff)+Math.abs(diff) || 1);
             const cuCross = cuPrev + (cu-cuPrev)*frac;
-            crossings.push({cu: cuCross, cost: cost(ORDER[p], cuCross, gb), a: ORDER[p], b: ORDER[q]});
+            crossings.push({cu: cuCross, cost: cost(ORDER[p], cuCross, gb)});
           }
           prevDiff = diff;
         }
@@ -536,53 +491,46 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
     return crossings;
   }
 
-  function render(){
-    updateRecommendation();
-    const cu = Math.max(0, Number(cuInput.value) || 0);
-    const gb = Math.max(0, Number(gbInput.value) || 0);
+  function render(cu, gb){
+    currentCU = cu; currentGB = gb;
+    miniCU.textContent = Math.round(cu).toLocaleString() + ' CU/mo';
+    miniGB.textContent = gb.toFixed(1) + ' GB/mo';
+    updateRecommendation(cu, gb);
+
     const xMax = Math.max(2000, cu * 1.6, 8000);
     const steps = 120;
-
     let yMax = 0;
     const series = {};
     ORDER.forEach(k => {
       const pts = [];
       for(let i=0;i<=steps;i++){
-        const x = xMax*i/steps;
-        const y = cost(k, x, gb);
+        const x = xMax*i/steps, y = cost(k, x, gb);
         pts.push([x,y]);
         if(y>yMax) yMax = y;
       }
       series[k] = pts;
     });
-    yMax = yMax * 1.12;
+    yMax *= 1.12;
 
     const sx = v => M.left + (v/xMax)*plotW;
     const sy = v => M.top + plotH - (v/yMax)*plotH;
-
     let svgParts = [];
 
-    // gridlines
     const yTicks = 5;
     for(let i=0;i<=yTicks;i++){
-      const val = yMax*i/yTicks;
-      const y = sy(val);
+      const val = yMax*i/yTicks, y = sy(val);
       svgParts.push(`<line class="grid-line" x1="${M.left}" y1="${y}" x2="${W-M.right}" y2="${y}"/>`);
       svgParts.push(`<text class="axis-label" x="${M.left-8}" y="${y+3}" text-anchor="end">$${Math.round(val).toLocaleString()}</text>`);
     }
     const xTicks = 5;
     for(let i=0;i<=xTicks;i++){
-      const val = xMax*i/xTicks;
-      const x = sx(val);
+      const val = xMax*i/xTicks, x = sx(val);
       svgParts.push(`<text class="axis-label" x="${x}" y="${H-M.bottom+18}" text-anchor="middle">${Math.round(val).toLocaleString()}</text>`);
     }
     svgParts.push(`<text class="axis-label" x="${M.left+plotW/2}" y="${H-4}" text-anchor="middle">Compute units / month (CU)</text>`);
-
-    // axes
     svgParts.push(`<line class="grid-line" x1="${M.left}" y1="${M.top}" x2="${M.left}" y2="${H-M.bottom}"/>`);
     svgParts.push(`<line class="grid-line" x1="${M.left}" y1="${H-M.bottom}" x2="${W-M.right}" y2="${H-M.bottom}"/>`);
 
-    // lines
     ORDER.forEach(k => {
       const color = resolveColor(RATES[k].color);
       const d = series[k].map((p,i) => `${i===0?'M':'L'}${sx(p[0]).toFixed(1)},${sy(p[1]).toFixed(1)}`).join(' ');
@@ -591,20 +539,15 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
       svgParts.push(`<text class="end-label" x="${sx(last[0])-6}" y="${sy(last[1])-8}" text-anchor="end" fill="${color}">${RATES[k].label}</text>`);
     });
 
-    // crossovers
-    const crossings = findCrossovers(gb, xMax);
-    crossings.forEach(c => {
-      if(c.cu <=0 || c.cu >= xMax) return;
+    findCrossovers(gb, xMax).forEach(c => {
+      if(c.cu <= 0 || c.cu >= xMax) return;
       const x = sx(c.cu), y = sy(c.cost);
       svgParts.push(`<circle class="crossover-dot" cx="${x}" cy="${y}" r="4.5" stroke="${resolveColor('--ink-muted')}"/>`);
       svgParts.push(`<text class="crossover-label" x="${x}" y="${y-10}" text-anchor="middle" fill="${resolveColor('--ink-soft')}">${Math.round(c.cu).toLocaleString()} CU</text>`);
     });
 
-    // current usage marker
     const markX = sx(Math.min(cu, xMax));
     svgParts.push(`<line class="grid-line" x1="${markX}" y1="${M.top}" x2="${markX}" y2="${H-M.bottom}" stroke="${resolveColor('--accent')}" stroke-dasharray="4 3" opacity="0.6"/>`);
-
-    // hover interaction layer
     svgParts.push(`<rect id="hoverCatcher" x="${M.left}" y="${M.top}" width="${plotW}" height="${plotH}" fill="transparent"/>`);
     svgParts.push(`<line id="hoverLine" class="hover-line" x1="0" y1="${M.top}" x2="0" y2="${H-M.bottom}"/>`);
     ORDER.forEach(k => {
@@ -614,7 +557,6 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
     svg.innerHTML = svgParts.join('');
     svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
 
-    // wire hover
     const catcher = svg.querySelector('#hoverCatcher');
     const hoverLine = svg.querySelector('#hoverLine');
     catcher.addEventListener('mousemove', (e) => {
@@ -630,7 +572,7 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
         const dot = svg.querySelector('#hoverDot-'+k);
         dot.setAttribute('cx', x); dot.setAttribute('cy', y);
         dot.style.opacity = 1;
-        lines.push(`<div>${RATES[k].label}: ${fmtMoney(cost(k,xVal,gb))}</div>`);
+        lines.push(`<div>${RATES[k].label}: ${fmtUsd(cost(k,xVal,gb))}</div>`);
       });
       tooltip.innerHTML = lines.join('');
       tooltip.style.opacity = 1;
@@ -645,8 +587,122 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
     });
   }
 
-  render();
-  window.addEventListener('resize', render);
+  // ---- schedule projector ----
+  function buildProjector(actors){
+    const tbody = document.getElementById('projectorBody');
+    tbody.innerHTML = '';
+    const rows = [];
+
+    actors.forEach((a, idx) => {
+      const notDeployed = a.cloudRuns === null || a.cloudRuns === undefined;
+      const hasData = a.referenceRun != null;
+      const cuDefault = hasData ? a.referenceRun.cu : 0;
+      const gbDefault = hasData ? (a.referenceRun.proxyGb || 0) : 0;
+      const statusChip = notDeployed
+        ? `<span class="chip none">not deployed</span>`
+        : hasData
+          ? `<span class="chip good">recorded (${a.referenceRun.status.toLowerCase().replace('-',' ')})</span>`
+          : `<span class="chip on">needs estimate</span>`;
+      const label = a.inLocalRepo === false ? `${a.name} <span class="chip off">not in repo</span>` : a.name;
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${label}</td>
+        <td>${statusChip}</td>
+        <td class="num"><input type="number" class="cu-input ${hasData?'':'needs-estimate'}" min="0" step="0.01" value="${cuDefault.toFixed(2)}" ${notDeployed?'disabled':''}></td>
+        <td class="num"><input type="number" class="gb-input" min="0" step="0.01" value="${gbDefault.toFixed(2)}" ${notDeployed?'disabled':''}></td>
+        <td><select class="freq-select" ${notDeployed?'disabled':''}>
+          ${FREQS.map((f,i) => `<option value="${i}" ${(notDeployed?0:DEFAULT_FREQ_INDEX)===i?'selected':''}>${f.label}</option>`).join('')}
+        </select></td>
+        <td class="num runs-mo">—</td>
+        <td class="num cu-mo">—</td>
+        <td class="num gb-mo">—</td>
+      `;
+      tbody.appendChild(tr);
+      rows.push(tr);
+    });
+
+    function recompute(){
+      let totalCU = 0, totalGB = 0;
+      rows.forEach(tr => {
+        const cuPerRun = Number(tr.querySelector('.cu-input').value) || 0;
+        const gbPerRun = Number(tr.querySelector('.gb-input').value) || 0;
+        const freqIdx = Number(tr.querySelector('.freq-select').value);
+        const runsPerMonth = FREQS[freqIdx].runsPerMonth;
+        const monthlyCU = cuPerRun * runsPerMonth;
+        const monthlyGB = gbPerRun * runsPerMonth;
+        tr.querySelector('.runs-mo').textContent = runsPerMonth.toFixed(2);
+        tr.querySelector('.cu-mo').textContent = monthlyCU.toFixed(1);
+        tr.querySelector('.gb-mo').textContent = monthlyGB.toFixed(2);
+        totalCU += monthlyCU; totalGB += monthlyGB;
+      });
+      document.getElementById('totalCU').textContent = totalCU.toFixed(1);
+      document.getElementById('totalGB').textContent = totalGB.toFixed(2);
+      render(totalCU, totalGB);
+      const cheapest = document.getElementById('recTier').textContent;
+      const capCard = document.getElementById('recCapCard');
+      if(capCard) capCard.dataset.tier = cheapest;
+    }
+
+    rows.forEach(tr => {
+      tr.querySelectorAll('input,select').forEach(el => el.addEventListener('input', recompute));
+    });
+    recompute();
+  }
+
+  function applyUsageData(d, isLive){
+    const asOf = document.getElementById('usageAsOf');
+    asOf.textContent = (isLive ? 'refreshed ' : 'snapshot ') + fmtDateTime(d.generatedAt);
+    document.getElementById('planBasePrice').textContent = '$' + d.account.planBasePriceUsd;
+
+    const used = d.current.monthlyUsageUsd, cap = d.limits.maxMonthlyUsageUsd;
+    const pct = Math.min(100, (used/cap)*100);
+    document.getElementById('capFigure').textContent = `${fmtUsd(used)} / ${fmtUsd(cap)}`;
+    document.getElementById('capFill').style.width = pct.toFixed(1) + '%';
+
+    const cycleStart = new Date(d.cycle.startAt), cycleEnd = new Date(d.cycle.endAt), asOfDate = new Date(d.generatedAt);
+    const daysElapsed = Math.max(1, (asOfDate - cycleStart) / 86400000);
+    const totalDays = (cycleEnd - cycleStart) / 86400000;
+    const burnPerDay = used / daysElapsed;
+    const daysToCap = burnPerDay > 0 ? (cap - used) / burnPerDay : Infinity;
+    const capBox = document.getElementById('usageAlertBox');
+    const title = document.getElementById('capTitle');
+    const note = document.getElementById('capNote');
+    const capCard = document.getElementById('recCapCard');
+    if(used >= cap){
+      title.textContent = '⚠ Billing-cycle usage cap: reached';
+      note.innerHTML = `Current cycle: ${fmtDate(d.cycle.startAt)} – ${fmtDate(d.cycle.endAt)}. The account has hit its usage cap — new runs are likely blocked until it's raised or the cycle resets.`;
+      if(capCard) capCard.textContent = 'The usage cap has been hit. Raise it in Console → Billing to resume runs.';
+    } else if(daysToCap < (cycleEnd - asOfDate)/86400000){
+      const hitDate = new Date(asOfDate.getTime() + daysToCap*86400000);
+      title.textContent = '⚠ Billing-cycle usage cap: on pace to be hit early';
+      note.innerHTML = `Current cycle: ${fmtDate(d.cycle.startAt)} – ${fmtDate(d.cycle.endAt)}. At ${Math.round(daysElapsed)} of ~${Math.round(totalDays)} days elapsed, the account has used <b>${pct.toFixed(1)}%</b> of its ${fmtUsd(cap)} cap. At the trailing burn rate (~${fmtUsd(burnPerDay)}/day), the cap is on pace to be hit around <b>${fmtDate(hitDate)}</b> — before the cycle resets — which would pause every actor's runs. Raise <code class="mono">maxMonthlyUsageUsd</code> in Console → Billing if runs need to keep going.`;
+      if(capCard) capCard.innerHTML = `${pct.toFixed(1)}% of the $${cap} cap is spent already. On pace to hit it around <b>${fmtDate(hitDate)}</b>, before the cycle resets ${fmtDate(d.cycle.endAt)}.`;
+    } else {
+      title.textContent = '✓ Billing-cycle usage cap: on track';
+      capBox.style.borderColor = 'var(--good)';
+      capBox.style.background = 'var(--good-soft)';
+      note.innerHTML = `Current cycle: ${fmtDate(d.cycle.startAt)} – ${fmtDate(d.cycle.endAt)}. At ${Math.round(daysElapsed)} of ~${Math.round(totalDays)} days elapsed, the account has used <b>${pct.toFixed(1)}%</b> of its ${fmtUsd(cap)} cap — on pace to stay under it.`;
+      if(capCard) capCard.textContent = `On track: ${pct.toFixed(1)}% of the cap used with ${Math.round(totalDays-daysElapsed)} days left in the cycle.`;
+    }
+
+    buildProjector(d.actors);
+  }
+
+  async function loadUsageData(){
+    document.getElementById('projectorFallbackNote').hidden = true;
+    try{
+      const res = await fetch('./usage-data.json', {cache:'no-store'});
+      if(!res.ok) throw new Error('not found');
+      const d = await res.json();
+      applyUsageData(d, true);
+    } catch(err){
+      document.getElementById('projectorFallbackNote').hidden = false;
+      applyUsageData(FALLBACK_DATA, false);
+    }
+  }
+  loadUsageData();
+  window.addEventListener('resize', () => render(currentCU, currentGB));
 
   // tab nav active state
   const tabLinks = [...document.querySelectorAll('#tabbar a')];

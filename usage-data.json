@@ -1,0 +1,208 @@
+{
+  "generatedAt": "2026-09-10T17:55:08.551415+00:00",
+  "account": {
+    "username": "umich_bf_procurement",
+    "planBasePriceUsd": 29,
+    "cuRateUsd": 0.2,
+    "residentialRateUsd": 8
+  },
+  "cycle": {
+    "startAt": "2026-08-26T00:00:00.000Z",
+    "endAt": "2026-09-25T23:59:59.999Z"
+  },
+  "limits": {
+    "maxMonthlyUsageUsd": 150
+  },
+  "current": {
+    "monthlyUsageUsd": 125.31122492399265,
+    "monthlyActorComputeUnits": 481.41468000000015,
+    "monthlyResidentialProxyGbytes": 1.282645309343934,
+    "actorCount": 15
+  },
+  "actors": [
+    {
+      "name": "B&H",
+      "actorId": "uyT70x2TgZ8Fgalcb",
+      "inLocalRepo": true,
+      "cloudRuns": 24,
+      "lifetimeUsd": 67.9817,
+      "referenceRun": {
+        "status": "SUCCEEDED",
+        "usd": 38.26640482860321,
+        "startedAt": "2026-09-05T23:24:15.749Z",
+        "cu": 181.215,
+        "durationMin": 1359.1,
+        "proxyGb": 0
+      }
+    },
+    {
+      "name": "Mozart / Medline",
+      "actorId": "ADnb6IYpm1Pp3gB79",
+      "inLocalRepo": true,
+      "cloudRuns": 8,
+      "lifetimeUsd": 21.8746,
+      "referenceRun": {
+        "status": "ABORTED",
+        "usd": 16.83537179853983,
+        "startedAt": "2026-09-08T21:39:02.282Z",
+        "cu": 79.222,
+        "durationMin": 594.2,
+        "proxyGb": 0
+      }
+    },
+    {
+      "name": "Fisher Scientific",
+      "actorId": "2fxV4yIi7vVBJyr0v",
+      "inLocalRepo": true,
+      "cloudRuns": 33,
+      "lifetimeUsd": 31.123,
+      "referenceRun": {
+        "status": "TIMED-OUT",
+        "usd": 6.345155591181361,
+        "startedAt": "2026-09-03T18:26:27.227Z",
+        "cu": 4.0,
+        "durationMin": 60.0,
+        "proxyGb": 0.639
+      }
+    },
+    {
+      "name": "DigiKey",
+      "actorId": "jrUOfWXFUMUTr6sdB",
+      "inLocalRepo": true,
+      "cloudRuns": 13,
+      "lifetimeUsd": 1.4689,
+      "referenceRun": {
+        "status": "TIMED-OUT",
+        "usd": 0.8007560209386054,
+        "startedAt": "2026-08-31T18:26:56.335Z",
+        "cu": 4.0,
+        "durationMin": 60.0,
+        "proxyGb": 0
+      }
+    },
+    {
+      "name": "CST",
+      "actorId": "4WnfDZ2qY3ptiDe0J",
+      "inLocalRepo": true,
+      "cloudRuns": 2,
+      "lifetimeUsd": 0.2086,
+      "referenceRun": {
+        "status": "SUCCEEDED",
+        "usd": 0.19766001407590575,
+        "startedAt": "2026-09-09T17:26:36.650Z",
+        "cu": 0.201,
+        "durationMin": 3.0,
+        "proxyGb": 0
+      }
+    },
+    {
+      "name": "Ferguson",
+      "actorId": "zWa1i5e0cr8H50URs",
+      "inLocalRepo": true,
+      "cloudRuns": 1,
+      "lifetimeUsd": 0.0326,
+      "referenceRun": {
+        "status": "SUCCEEDED",
+        "usd": 0.0325803503117813,
+        "startedAt": "2026-09-10T17:16:02.827Z",
+        "cu": 0.158,
+        "durationMin": 2.4,
+        "proxyGb": 0
+      }
+    },
+    {
+      "name": "AVI",
+      "actorId": "YYlwdzDbZjqydFcJQ",
+      "inLocalRepo": true,
+      "cloudRuns": 4,
+      "lifetimeUsd": 0.0376,
+      "referenceRun": {
+        "status": "SUCCEEDED",
+        "usd": 0.019289355332878233,
+        "startedAt": "2026-09-09T00:16:21.070Z",
+        "cu": 0.087,
+        "durationMin": 1.3,
+        "proxyGb": 0
+      }
+    },
+    {
+      "name": "Grainger",
+      "actorId": "31dvRegfepkUTcWOf",
+      "inLocalRepo": true,
+      "cloudRuns": 0,
+      "lifetimeUsd": 0,
+      "referenceRun": null
+    },
+    {
+      "name": "Imperial Bag & Paper",
+      "actorId": "dBpwb6p4tXuan7yvt",
+      "inLocalRepo": true,
+      "cloudRuns": 0,
+      "lifetimeUsd": 0,
+      "referenceRun": null
+    },
+    {
+      "name": "Jagger (CDW)",
+      "actorId": "6wMU6OugwLeUsxKT9",
+      "inLocalRepo": true,
+      "cloudRuns": 0,
+      "lifetimeUsd": 0,
+      "referenceRun": null
+    },
+    {
+      "name": "Sigma-Aldrich",
+      "actorId": "0fvgR1JjbvEef0feD",
+      "inLocalRepo": true,
+      "cloudRuns": 0,
+      "lifetimeUsd": 0,
+      "referenceRun": null
+    },
+    {
+      "name": "Staples",
+      "actorId": "6TdbGbcy7ZS2C1iMa",
+      "inLocalRepo": true,
+      "cloudRuns": 0,
+      "lifetimeUsd": 0,
+      "referenceRun": null
+    },
+    {
+      "name": "IDT",
+      "actorId": "MSOzQ9fvzcd2EuG8D",
+      "inLocalRepo": false,
+      "cloudRuns": 8,
+      "lifetimeUsd": 0.0759,
+      "referenceRun": {
+        "status": "FAILED",
+        "usd": 0.02450105538927515,
+        "startedAt": "2026-09-03T20:31:38.557Z",
+        "cu": 0.113,
+        "durationMin": 6.8,
+        "proxyGb": 0
+      }
+    },
+    {
+      "name": "Eurofins",
+      "actorId": "HlARNGkqiyBuDLuTw",
+      "inLocalRepo": false,
+      "cloudRuns": 4,
+      "lifetimeUsd": 0.0493,
+      "referenceRun": {
+        "status": "SUCCEEDED",
+        "usd": 0.017105964147607487,
+        "startedAt": "2026-09-04T19:44:15.148Z",
+        "cu": 0.078,
+        "durationMin": 4.7,
+        "proxyGb": 0
+      }
+    },
+    {
+      "name": "Jemtech",
+      "actorId": null,
+      "inLocalRepo": true,
+      "cloudRuns": null,
+      "lifetimeUsd": null,
+      "referenceRun": null,
+      "note": "not deployed to Apify"
+    }
+  ]
+}
