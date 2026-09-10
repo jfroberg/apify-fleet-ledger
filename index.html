@@ -89,6 +89,12 @@ section:first-of-type{border-top:none;}
 .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:6px; flex-wrap:wrap;}
 .section-head h2{font-size:1.45rem;}
 .section-tag{font-size:0.74rem; font-family:"IBM Plex Mono"; color:var(--ink-muted); background:var(--surface-2); padding:2px 8px; border-radius:5px; border:1px solid var(--border);}
+.refresh-btn{
+  margin-left:auto; font-size:0.8rem; font-weight:600; color:var(--accent-strong);
+  background:var(--accent-soft); border:1px solid var(--accent); border-radius:7px;
+  padding:5px 11px; text-decoration:none; white-space:nowrap;
+}
+.refresh-btn:hover{background:var(--accent); color:var(--surface);}
 .dek{color:var(--ink-soft); max-width:70ch; margin-top:6px; font-size:0.96rem;}
 
 /* ---- tables ---- */
@@ -204,8 +210,10 @@ footer{margin-top:56px; padding-top:18px; border-top:1px solid var(--border); fo
 </header>
 
 <section id="projector">
-  <div class="section-head"><h2>Schedule projector</h2><span class="section-tag" id="usageAsOf">loading…</span></div>
-  <p class="dek">CU/run and proxy GB/run are pre-filled from each actor's <b>largest recorded run</b> on the Apify account — real billed usage, not a guess. Actors with no cloud-run history yet show <span class="chip on">needs estimate</span> — type a number to include them. Edit any field; frequency drives the projection, everything below recalculates live.</p>
+  <div class="section-head"><h2>Schedule projector</h2><span class="section-tag" id="usageAsOf">loading…</span>
+    <a class="refresh-btn" href="https://github.com/jfroberg/apify-fleet-ledger/actions/workflows/refresh-usage.yml" target="_blank" rel="noopener">↻ Refresh usage data</a>
+  </div>
+  <p class="dek">CU/run and proxy GB/run are pre-filled from each actor's <b>largest recorded run</b> on the Apify account — real billed usage, not a guess. Actors with no cloud-run history yet show <span class="chip on">needs estimate</span> — type a number to include them. Edit any field; frequency drives the projection, everything below recalculates live. "↻ Refresh usage data" opens the GitHub Actions run page in a new tab — one click there re-pulls from Apify immediately, for anyone with write access to the repo.</p>
 
   <div class="tbl-scroll">
   <table class="projector-table">
