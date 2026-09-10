@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T17:55:08.551415+00:00",
+  "generatedAt": "2026-09-10T18:36:21.605350+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 29,
@@ -14,8 +14,8 @@
     "maxMonthlyUsageUsd": 150
   },
   "current": {
-    "monthlyUsageUsd": 125.31122492399265,
-    "monthlyActorComputeUnits": 481.41468000000015,
+    "monthlyUsageUsd": 125.72371553375777,
+    "monthlyActorComputeUnits": 483.2940800000001,
     "monthlyResidentialProxyGbytes": 1.282645309343934,
     "actorCount": 15
   },
@@ -99,14 +99,14 @@
       "name": "Ferguson",
       "actorId": "zWa1i5e0cr8H50URs",
       "inLocalRepo": true,
-      "cloudRuns": 1,
-      "lifetimeUsd": 0.0326,
+      "cloudRuns": 2,
+      "lifetimeUsd": 0.4455,
       "referenceRun": {
-        "status": "SUCCEEDED",
-        "usd": 0.0325803503117813,
-        "startedAt": "2026-09-10T17:16:02.827Z",
-        "cu": 0.158,
-        "durationMin": 2.4,
+        "status": "RUNNING",
+        "usd": 0.4129027941413457,
+        "startedAt": "2026-09-10T18:07:25.420Z",
+        "cu": 1.924,
+        "durationMin": 28.9,
         "proxyGb": 0
       }
     },
