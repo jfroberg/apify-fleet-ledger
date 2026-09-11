@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-09-10T19:49:10.589313+00:00",
+  "generatedAt": "2026-09-11T17:01:15.623938+00:00",
   "account": {
     "username": "umich_bf_procurement",
-    "planBasePriceUsd": 29,
-    "cuRateUsd": 0.2,
-    "residentialRateUsd": 8
+    "planBasePriceUsd": 199,
+    "cuRateUsd": 0.16,
+    "residentialRateUsd": 7.5
   },
   "cycle": {
     "startAt": "2026-08-26T00:00:00.000Z",
     "endAt": "2026-09-25T23:59:59.999Z"
   },
   "limits": {
-    "maxMonthlyUsageUsd": 150
+    "maxMonthlyUsageUsd": 199
   },
   "current": {
-    "monthlyUsageUsd": 126.59054091067024,
-    "monthlyActorComputeUnits": 487.1964166666668,
+    "monthlyUsageUsd": 128.75552139061057,
+    "monthlyActorComputeUnits": 500.1699477777779,
     "monthlyResidentialProxyGbytes": 1.282645309343934,
-    "actorCount": 15
+    "actorCount": 16
   },
   "actors": [
     {
@@ -100,13 +100,13 @@
       "actorId": "zWa1i5e0cr8H50URs",
       "inLocalRepo": true,
       "cloudRuns": 3,
-      "lifetimeUsd": 1.2905,
+      "lifetimeUsd": 3.6605,
       "referenceRun": {
-        "status": "TIMED-OUT",
-        "usd": 0.8806278799859881,
-        "startedAt": "2026-09-10T18:07:25.420Z",
-        "cu": 4.0,
-        "durationMin": 60.0,
+        "status": "SUCCEEDED",
+        "usd": 2.747253397512558,
+        "startedAt": "2026-09-10T19:23:30.403Z",
+        "cu": 14.036,
+        "durationMin": 210.5,
         "proxyGb": 0
       }
     },
@@ -161,14 +161,14 @@
       "name": "Staples",
       "actorId": "6TdbGbcy7ZS2C1iMa",
       "inLocalRepo": true,
-      "cloudRuns": 1,
-      "lifetimeUsd": 0.004,
+      "cloudRuns": 4,
+      "lifetimeUsd": 0.033,
       "referenceRun": {
-        "status": "FAILED",
-        "usd": 0.003974862184857327,
-        "startedAt": "2026-09-10T19:47:34.768Z",
-        "cu": 0.02,
-        "durationMin": 0.3,
+        "status": "SUCCEEDED",
+        "usd": 0.017866142506485185,
+        "startedAt": "2026-09-10T20:10:35.393Z",
+        "cu": 0.085,
+        "durationMin": 1.3,
         "proxyGb": 0
       }
     },
