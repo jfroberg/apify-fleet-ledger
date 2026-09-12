@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T17:01:15.623938+00:00",
+  "generatedAt": "2026-09-12T16:18:16.992523+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,9 +14,9 @@
     "maxMonthlyUsageUsd": 199
   },
   "current": {
-    "monthlyUsageUsd": 128.75552139061057,
-    "monthlyActorComputeUnits": 500.1699477777779,
-    "monthlyResidentialProxyGbytes": 1.282645309343934,
+    "monthlyUsageUsd": 129.43585065710883,
+    "monthlyActorComputeUnits": 502.62199111111124,
+    "monthlyResidentialProxyGbytes": 1.3197985142469406,
     "actorCount": 16
   },
   "actors": [
