@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T17:37:17.596611+00:00",
+  "generatedAt": "2026-09-17T17:37:27.724527+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,10 +14,10 @@
     "maxMonthlyUsageUsd": 199
   },
   "current": {
-    "monthlyUsageUsd": 141.43172791109362,
-    "monthlyActorComputeUnits": 573.4043422222223,
+    "monthlyUsageUsd": 145.42550210194648,
+    "monthlyActorComputeUnits": 594.8007844444444,
     "monthlyResidentialProxyGbytes": 1.3469564318656921,
-    "actorCount": 22
+    "actorCount": 23
   },
   "actors": [
     {
@@ -84,8 +84,8 @@
       "name": "CST",
       "actorId": "4WnfDZ2qY3ptiDe0J",
       "inLocalRepo": true,
-      "cloudRuns": 2,
-      "lifetimeUsd": 0.2086,
+      "cloudRuns": 3,
+      "lifetimeUsd": 0.3867,
       "referenceRun": {
         "status": "SUCCEEDED",
         "usd": 0.19766001407590575,
