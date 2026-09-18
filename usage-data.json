@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T17:37:27.724527+00:00",
+  "generatedAt": "2026-09-18T17:04:39.469945+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,10 +14,10 @@
     "maxMonthlyUsageUsd": 199
   },
   "current": {
-    "monthlyUsageUsd": 145.42550210194648,
-    "monthlyActorComputeUnits": 594.8007844444444,
+    "monthlyUsageUsd": 146.57918269246082,
+    "monthlyActorComputeUnits": 601.6081163888888,
     "monthlyResidentialProxyGbytes": 1.3469564318656921,
-    "actorCount": 23
+    "actorCount": 28
   },
   "actors": [
     {
@@ -69,8 +69,8 @@
       "name": "DigiKey",
       "actorId": "jrUOfWXFUMUTr6sdB",
       "inLocalRepo": true,
-      "cloudRuns": 13,
-      "lifetimeUsd": 1.4689,
+      "cloudRuns": 14,
+      "lifetimeUsd": 2.1098,
       "referenceRun": {
         "status": "TIMED-OUT",
         "usd": 0.8007560209386054,
@@ -191,8 +191,8 @@
       "name": "Eurofins",
       "actorId": "HlARNGkqiyBuDLuTw",
       "inLocalRepo": false,
-      "cloudRuns": 4,
-      "lifetimeUsd": 0.0493,
+      "cloudRuns": 5,
+      "lifetimeUsd": 0.0615,
       "referenceRun": {
         "status": "SUCCEEDED",
         "usd": 0.017105964147607487,
