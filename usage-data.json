@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T18:37:52.651113+00:00",
+  "generatedAt": "2026-09-30T18:26:26.642574+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,9 +14,9 @@
     "maxMonthlyUsageUsd": 300
   },
   "current": {
-    "monthlyUsageUsd": 22.184881162563986,
-    "monthlyActorComputeUnits": 91.15423499999987,
-    "monthlyResidentialProxyGbytes": 0.05909627955406904,
+    "monthlyUsageUsd": 22.381295453766942,
+    "monthlyActorComputeUnits": 91.41610499999987,
+    "monthlyResidentialProxyGbytes": 0.07636537216603756,
     "actorCount": 39
   },
   "actors": [
@@ -69,8 +69,8 @@
       "name": "DigiKey",
       "actorId": "jrUOfWXFUMUTr6sdB",
       "inLocalRepo": true,
-      "cloudRuns": 18,
-      "lifetimeUsd": 2.7483,
+      "cloudRuns": 19,
+      "lifetimeUsd": 2.9019,
       "referenceRun": {
         "status": "TIMED-OUT",
         "usd": 0.8007560209386054,
