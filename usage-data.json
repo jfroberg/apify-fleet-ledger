@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T18:26:26.642574+00:00",
+  "generatedAt": "2026-10-01T18:52:25.040516+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,8 +14,8 @@
     "maxMonthlyUsageUsd": 300
   },
   "current": {
-    "monthlyUsageUsd": 22.381295453766942,
-    "monthlyActorComputeUnits": 91.41610499999987,
+    "monthlyUsageUsd": 27.748000560873486,
+    "monthlyActorComputeUnits": 120.06593666666649,
     "monthlyResidentialProxyGbytes": 0.07636537216603756,
     "actorCount": 39
   },
@@ -137,9 +137,16 @@
       "name": "Imperial Bag & Paper",
       "actorId": "dBpwb6p4tXuan7yvt",
       "inLocalRepo": true,
-      "cloudRuns": 0,
-      "lifetimeUsd": 0,
-      "referenceRun": null
+      "cloudRuns": 2,
+      "lifetimeUsd": 0.0389,
+      "referenceRun": {
+        "status": "FAILED",
+        "usd": 0.03553687267096059,
+        "startedAt": "2026-10-01T17:34:15.719Z",
+        "cu": 0.213,
+        "durationMin": 3.2,
+        "proxyGb": 0
+      }
     },
     {
       "name": "Jagger (CDW)",
@@ -161,8 +168,8 @@
       "name": "Staples",
       "actorId": "6TdbGbcy7ZS2C1iMa",
       "inLocalRepo": true,
-      "cloudRuns": 4,
-      "lifetimeUsd": 0.033,
+      "cloudRuns": 5,
+      "lifetimeUsd": 0.0473,
       "referenceRun": {
         "status": "SUCCEEDED",
         "usd": 0.017866142506485185,
