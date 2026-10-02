@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T18:52:25.040516+00:00",
+  "generatedAt": "2026-10-02T18:24:07.018226+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,8 +14,8 @@
     "maxMonthlyUsageUsd": 300
   },
   "current": {
-    "monthlyUsageUsd": 27.748000560873486,
-    "monthlyActorComputeUnits": 120.06593666666649,
+    "monthlyUsageUsd": 28.41005892429449,
+    "monthlyActorComputeUnits": 123.7656577777776,
     "monthlyResidentialProxyGbytes": 0.07636537216603756,
     "actorCount": 39
   },
@@ -69,12 +69,12 @@
       "name": "DigiKey",
       "actorId": "jrUOfWXFUMUTr6sdB",
       "inLocalRepo": true,
-      "cloudRuns": 19,
-      "lifetimeUsd": 2.9019,
+      "cloudRuns": 8,
+      "lifetimeUsd": 1.465,
       "referenceRun": {
         "status": "TIMED-OUT",
-        "usd": 0.8007560209386054,
-        "startedAt": "2026-08-31T18:26:56.335Z",
+        "usd": 0.64094062014415,
+        "startedAt": "2026-09-17T19:59:52.060Z",
         "cu": 4.0,
         "durationMin": 60.0,
         "proxyGb": 0
@@ -137,14 +137,14 @@
       "name": "Imperial Bag & Paper",
       "actorId": "dBpwb6p4tXuan7yvt",
       "inLocalRepo": true,
-      "cloudRuns": 2,
-      "lifetimeUsd": 0.0389,
+      "cloudRuns": 8,
+      "lifetimeUsd": 0.5645,
       "referenceRun": {
-        "status": "FAILED",
-        "usd": 0.03553687267096059,
-        "startedAt": "2026-10-01T17:34:15.719Z",
-        "cu": 0.213,
-        "durationMin": 3.2,
+        "status": "SUCCEEDED",
+        "usd": 0.14918751971976923,
+        "startedAt": "2026-10-01T20:52:48.703Z",
+        "cu": 0.853,
+        "durationMin": 12.8,
         "proxyGb": 0
       }
     },
