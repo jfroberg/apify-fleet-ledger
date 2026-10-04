@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T17:15:09.538185+00:00",
+  "generatedAt": "2026-10-04T17:34:39.219571+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,7 +14,7 @@
     "maxMonthlyUsageUsd": 300
   },
   "current": {
-    "monthlyUsageUsd": 28.42972478131661,
+    "monthlyUsageUsd": 28.450399733563792,
     "monthlyActorComputeUnits": 123.7656577777776,
     "monthlyResidentialProxyGbytes": 0.07636537216603756,
     "actorCount": 39
@@ -24,8 +24,8 @@
       "name": "B&H",
       "actorId": "uyT70x2TgZ8Fgalcb",
       "inLocalRepo": true,
-      "cloudRuns": 24,
-      "lifetimeUsd": 67.9817,
+      "cloudRuns": 11,
+      "lifetimeUsd": 59.4411,
       "referenceRun": {
         "status": "SUCCEEDED",
         "usd": 38.26640482860321,
@@ -54,8 +54,8 @@
       "name": "Fisher Scientific",
       "actorId": "2fxV4yIi7vVBJyr0v",
       "inLocalRepo": true,
-      "cloudRuns": 33,
-      "lifetimeUsd": 31.123,
+      "cloudRuns": 24,
+      "lifetimeUsd": 25.4455,
       "referenceRun": {
         "status": "TIMED-OUT",
         "usd": 6.345155591181361,
@@ -69,8 +69,8 @@
       "name": "DigiKey",
       "actorId": "jrUOfWXFUMUTr6sdB",
       "inLocalRepo": true,
-      "cloudRuns": 8,
-      "lifetimeUsd": 1.465,
+      "cloudRuns": 6,
+      "lifetimeUsd": 1.433,
       "referenceRun": {
         "status": "TIMED-OUT",
         "usd": 0.64094062014415,
