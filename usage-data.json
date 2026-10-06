@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T21:11:11.855225+00:00",
+  "generatedAt": "2026-10-06T18:54:13.769562+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,7 +14,7 @@
     "maxMonthlyUsageUsd": 300
   },
   "current": {
-    "monthlyUsageUsd": 28.473621005092962,
+    "monthlyUsageUsd": 28.491369303265447,
     "monthlyActorComputeUnits": 123.7656577777776,
     "monthlyResidentialProxyGbytes": 0.07636537216603756,
     "actorCount": 39
@@ -24,8 +24,8 @@
       "name": "B&H",
       "actorId": "uyT70x2TgZ8Fgalcb",
       "inLocalRepo": true,
-      "cloudRuns": 11,
-      "lifetimeUsd": 59.4411,
+      "cloudRuns": 4,
+      "lifetimeUsd": 38.6091,
       "referenceRun": {
         "status": "SUCCEEDED",
         "usd": 38.26640482860321,
@@ -54,15 +54,15 @@
       "name": "Fisher Scientific",
       "actorId": "2fxV4yIi7vVBJyr0v",
       "inLocalRepo": true,
-      "cloudRuns": 24,
-      "lifetimeUsd": 25.4455,
+      "cloudRuns": 4,
+      "lifetimeUsd": 2.2158,
       "referenceRun": {
-        "status": "TIMED-OUT",
-        "usd": 6.345155591181361,
-        "startedAt": "2026-09-03T18:26:27.227Z",
-        "cu": 4.0,
-        "durationMin": 60.0,
-        "proxyGb": 0.639
+        "status": "SUCCEEDED",
+        "usd": 1.1325412137410498,
+        "startedAt": "2026-09-05T21:25:34.071Z",
+        "cu": 2.251,
+        "durationMin": 33.8,
+        "proxyGb": 0
       }
     },
     {
@@ -183,14 +183,14 @@
       "name": "IDT",
       "actorId": "MSOzQ9fvzcd2EuG8D",
       "inLocalRepo": false,
-      "cloudRuns": 11,
-      "lifetimeUsd": 0.0864,
+      "cloudRuns": 3,
+      "lifetimeUsd": 0.0105,
       "referenceRun": {
-        "status": "FAILED",
-        "usd": 0.02450105538927515,
-        "startedAt": "2026-09-03T20:31:38.557Z",
-        "cu": 0.113,
-        "durationMin": 6.8,
+        "status": "ABORTED",
+        "usd": 0.004896770418265628,
+        "startedAt": "2026-09-22T19:44:11.135Z",
+        "cu": 0.028,
+        "durationMin": 1.7,
         "proxyGb": 0
       }
     },
@@ -198,14 +198,14 @@
       "name": "Eurofins",
       "actorId": "HlARNGkqiyBuDLuTw",
       "inLocalRepo": false,
-      "cloudRuns": 5,
-      "lifetimeUsd": 0.0615,
+      "cloudRuns": 1,
+      "lifetimeUsd": 0.0123,
       "referenceRun": {
         "status": "SUCCEEDED",
-        "usd": 0.017105964147607487,
-        "startedAt": "2026-09-04T19:44:15.148Z",
-        "cu": 0.078,
-        "durationMin": 4.7,
+        "usd": 0.012258725566463836,
+        "startedAt": "2026-09-17T20:47:56.379Z",
+        "cu": 0.068,
+        "durationMin": 4.1,
         "proxyGb": 0
       }
     },
