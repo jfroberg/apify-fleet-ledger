@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T19:19:38.359702+00:00",
+  "generatedAt": "2026-10-08T19:16:16.614452+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,8 +14,8 @@
     "maxMonthlyUsageUsd": 300
   },
   "current": {
-    "monthlyUsageUsd": 28.508706197944992,
-    "monthlyActorComputeUnits": 123.7656577777776,
+    "monthlyUsageUsd": 34.50331713000438,
+    "monthlyActorComputeUnits": 124.84456999999982,
     "monthlyResidentialProxyGbytes": 0.07636537216603756,
     "actorCount": 39
   },
@@ -24,16 +24,9 @@
       "name": "B&H",
       "actorId": "uyT70x2TgZ8Fgalcb",
       "inLocalRepo": true,
-      "cloudRuns": 4,
-      "lifetimeUsd": 38.6091,
-      "referenceRun": {
-        "status": "SUCCEEDED",
-        "usd": 38.26640482860321,
-        "startedAt": "2026-09-05T23:24:15.749Z",
-        "cu": 181.215,
-        "durationMin": 1359.1,
-        "proxyGb": 0
-      }
+      "cloudRuns": 0,
+      "lifetimeUsd": 0,
+      "referenceRun": null
     },
     {
       "name": "Mozart / Medline",
@@ -54,23 +47,16 @@
       "name": "Fisher Scientific",
       "actorId": "2fxV4yIi7vVBJyr0v",
       "inLocalRepo": true,
-      "cloudRuns": 4,
-      "lifetimeUsd": 2.2158,
-      "referenceRun": {
-        "status": "SUCCEEDED",
-        "usd": 1.1325412137410498,
-        "startedAt": "2026-09-05T21:25:34.071Z",
-        "cu": 2.251,
-        "durationMin": 33.8,
-        "proxyGb": 0
-      }
+      "cloudRuns": 0,
+      "lifetimeUsd": 0,
+      "referenceRun": null
     },
     {
       "name": "DigiKey",
       "actorId": "jrUOfWXFUMUTr6sdB",
       "inLocalRepo": true,
-      "cloudRuns": 6,
-      "lifetimeUsd": 1.433,
+      "cloudRuns": 16,
+      "lifetimeUsd": 1.5772,
       "referenceRun": {
         "status": "TIMED-OUT",
         "usd": 0.64094062014415,
