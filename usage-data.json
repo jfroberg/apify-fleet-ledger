@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T18:48:21.848534+00:00",
+  "generatedAt": "2026-10-10T17:51:05.204098+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,7 +14,7 @@
     "maxMonthlyUsageUsd": 300
   },
   "current": {
-    "monthlyUsageUsd": 34.51864860662052,
+    "monthlyUsageUsd": 34.53408652481639,
     "monthlyActorComputeUnits": 124.84456999999982,
     "monthlyResidentialProxyGbytes": 0.07636537216603756,
     "actorCount": 39
@@ -32,16 +32,9 @@
       "name": "Mozart / Medline",
       "actorId": "ADnb6IYpm1Pp3gB79",
       "inLocalRepo": true,
-      "cloudRuns": 8,
-      "lifetimeUsd": 21.8746,
-      "referenceRun": {
-        "status": "ABORTED",
-        "usd": 16.83537179853983,
-        "startedAt": "2026-09-08T21:39:02.282Z",
-        "cu": 79.222,
-        "durationMin": 594.2,
-        "proxyGb": 0
-      }
+      "cloudRuns": 0,
+      "lifetimeUsd": 0,
+      "referenceRun": null
     },
     {
       "name": "Fisher Scientific",
@@ -100,16 +93,9 @@
       "name": "AVI",
       "actorId": "YYlwdzDbZjqydFcJQ",
       "inLocalRepo": true,
-      "cloudRuns": 4,
-      "lifetimeUsd": 0.0376,
-      "referenceRun": {
-        "status": "SUCCEEDED",
-        "usd": 0.019289355332878233,
-        "startedAt": "2026-09-09T00:16:21.070Z",
-        "cu": 0.087,
-        "durationMin": 1.3,
-        "proxyGb": 0
-      }
+      "cloudRuns": 0,
+      "lifetimeUsd": 0,
+      "referenceRun": null
     },
     {
       "name": "Grainger",
