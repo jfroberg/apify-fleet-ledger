@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T18:03:54.241508+00:00",
+  "generatedAt": "2026-10-12T21:43:40.352720+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,10 +14,10 @@
     "maxMonthlyUsageUsd": 300
   },
   "current": {
-    "monthlyUsageUsd": 34.54986217647277,
-    "monthlyActorComputeUnits": 124.84456999999982,
+    "monthlyUsageUsd": 34.66139841606321,
+    "monthlyActorComputeUnits": 125.20834611111094,
     "monthlyResidentialProxyGbytes": 0.07636537216603756,
-    "actorCount": 39
+    "actorCount": 40
   },
   "actors": [
     {
@@ -63,14 +63,14 @@
       "name": "CST",
       "actorId": "4WnfDZ2qY3ptiDe0J",
       "inLocalRepo": true,
-      "cloudRuns": 3,
-      "lifetimeUsd": 0.3867,
+      "cloudRuns": 1,
+      "lifetimeUsd": 0.1781,
       "referenceRun": {
         "status": "SUCCEEDED",
-        "usd": 0.19766001407590575,
-        "startedAt": "2026-09-09T17:26:36.650Z",
-        "cu": 0.201,
-        "durationMin": 3.0,
+        "usd": 0.17812248255870874,
+        "startedAt": "2026-09-17T15:07:08.897Z",
+        "cu": 0.226,
+        "durationMin": 3.4,
         "proxyGb": 0
       }
     },
@@ -78,16 +78,9 @@
       "name": "Ferguson",
       "actorId": "zWa1i5e0cr8H50URs",
       "inLocalRepo": true,
-      "cloudRuns": 3,
-      "lifetimeUsd": 3.6605,
-      "referenceRun": {
-        "status": "SUCCEEDED",
-        "usd": 2.747253397512558,
-        "startedAt": "2026-09-10T19:23:30.403Z",
-        "cu": 14.036,
-        "durationMin": 210.5,
-        "proxyGb": 0
-      }
+      "cloudRuns": 0,
+      "lifetimeUsd": 0,
+      "referenceRun": null
     },
     {
       "name": "AVI",
@@ -140,14 +133,14 @@
       "name": "Staples",
       "actorId": "6TdbGbcy7ZS2C1iMa",
       "inLocalRepo": true,
-      "cloudRuns": 5,
-      "lifetimeUsd": 0.0473,
+      "cloudRuns": 1,
+      "lifetimeUsd": 0.0143,
       "referenceRun": {
         "status": "SUCCEEDED",
-        "usd": 0.017866142506485185,
-        "startedAt": "2026-09-10T20:10:35.393Z",
-        "cu": 0.085,
-        "durationMin": 1.3,
+        "usd": 0.014250955094008977,
+        "startedAt": "2026-10-01T15:36:07.570Z",
+        "cu": 0.082,
+        "durationMin": 1.2,
         "proxyGb": 0
       }
     },
