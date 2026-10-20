@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T19:19:31.854755+00:00",
+  "generatedAt": "2026-10-20T17:57:55.782261+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,9 +14,9 @@
     "maxMonthlyUsageUsd": 300
   },
   "current": {
-    "monthlyUsageUsd": 34.867332594575444,
-    "monthlyActorComputeUnits": 125.47584138888871,
-    "monthlyResidentialProxyGbytes": 0.07636537216603756,
+    "monthlyUsageUsd": 51.64121956610558,
+    "monthlyActorComputeUnits": 208.91056694444416,
+    "monthlyResidentialProxyGbytes": 0.12665165401995182,
     "actorCount": 40
   },
   "actors": [
@@ -24,53 +24,74 @@
       "name": "B&H",
       "actorId": "uyT70x2TgZ8Fgalcb",
       "inLocalRepo": true,
-      "cloudRuns": 0,
-      "lifetimeUsd": 0,
-      "referenceRun": null
+      "cloudRuns": 2,
+      "lifetimeUsd": 0.2095,
+      "referenceRun": {
+        "status": "ABORTED",
+        "usd": 0.11040141763973733,
+        "startedAt": "2026-10-20T13:43:50.183Z",
+        "cu": 0.68,
+        "durationMin": 10.2,
+        "proxyGb": 0
+      }
     },
     {
       "name": "Mozart / Medline",
       "actorId": "ADnb6IYpm1Pp3gB79",
       "inLocalRepo": true,
-      "cloudRuns": 0,
-      "lifetimeUsd": 0,
-      "referenceRun": null
+      "cloudRuns": 2,
+      "lifetimeUsd": 1.4741,
+      "referenceRun": {
+        "status": "TIMED-OUT",
+        "usd": 1.3928663707777753,
+        "startedAt": "2026-10-20T14:04:22.678Z",
+        "cu": 7.957,
+        "durationMin": 59.7,
+        "proxyGb": 0
+      }
     },
     {
       "name": "Fisher Scientific",
       "actorId": "2fxV4yIi7vVBJyr0v",
       "inLocalRepo": true,
-      "cloudRuns": 0,
-      "lifetimeUsd": 0,
-      "referenceRun": null
+      "cloudRuns": 2,
+      "lifetimeUsd": 1.4149,
+      "referenceRun": {
+        "status": "TIMED-OUT",
+        "usd": 1.4011172056554932,
+        "startedAt": "2026-10-20T14:04:22.679Z",
+        "cu": 3.977,
+        "durationMin": 59.7,
+        "proxyGb": 0
+      }
     },
     {
       "name": "DigiKey",
       "actorId": "jrUOfWXFUMUTr6sdB",
       "inLocalRepo": true,
-      "cloudRuns": 16,
-      "lifetimeUsd": 1.5772,
+      "cloudRuns": 15,
+      "lifetimeUsd": 0.9363,
       "referenceRun": {
-        "status": "TIMED-OUT",
-        "usd": 0.64094062014415,
-        "startedAt": "2026-09-17T19:59:52.060Z",
-        "cu": 4.0,
-        "durationMin": 60.0,
-        "proxyGb": 0
+        "status": "SUCCEEDED",
+        "usd": 0.5026571817791985,
+        "startedAt": "2026-09-28T16:00:58.710Z",
+        "cu": 0.347,
+        "durationMin": 5.2,
+        "proxyGb": 0.0591
       }
     },
     {
       "name": "CST",
       "actorId": "4WnfDZ2qY3ptiDe0J",
       "inLocalRepo": true,
-      "cloudRuns": 1,
-      "lifetimeUsd": 0.1781,
+      "cloudRuns": 2,
+      "lifetimeUsd": 0.1899,
       "referenceRun": {
         "status": "SUCCEEDED",
-        "usd": 0.17812248255870874,
-        "startedAt": "2026-09-17T15:07:08.897Z",
-        "cu": 0.226,
-        "durationMin": 3.4,
+        "usd": 0.17813651440060047,
+        "startedAt": "2026-10-20T14:04:22.688Z",
+        "cu": 0.218,
+        "durationMin": 3.3,
         "proxyGb": 0
       }
     },
@@ -78,38 +99,59 @@
       "name": "Ferguson",
       "actorId": "zWa1i5e0cr8H50URs",
       "inLocalRepo": true,
-      "cloudRuns": 0,
-      "lifetimeUsd": 0,
-      "referenceRun": null
+      "cloudRuns": 2,
+      "lifetimeUsd": 0.7612,
+      "referenceRun": {
+        "status": "TIMED-OUT",
+        "usd": 0.7332449235439867,
+        "startedAt": "2026-10-20T14:04:22.673Z",
+        "cu": 3.982,
+        "durationMin": 59.7,
+        "proxyGb": 0
+      }
     },
     {
       "name": "AVI",
       "actorId": "YYlwdzDbZjqydFcJQ",
       "inLocalRepo": true,
-      "cloudRuns": 0,
-      "lifetimeUsd": 0,
-      "referenceRun": null
+      "cloudRuns": 2,
+      "lifetimeUsd": 0.0228,
+      "referenceRun": {
+        "status": "SUCCEEDED",
+        "usd": 0.012878335661981502,
+        "startedAt": "2026-10-20T14:04:22.667Z",
+        "cu": 0.069,
+        "durationMin": 1.0,
+        "proxyGb": 0
+      }
     },
     {
       "name": "Grainger",
       "actorId": "31dvRegfepkUTcWOf",
       "inLocalRepo": true,
-      "cloudRuns": 0,
-      "lifetimeUsd": 0,
-      "referenceRun": null
+      "cloudRuns": 1,
+      "lifetimeUsd": 0.0035,
+      "referenceRun": {
+        "status": "FAILED",
+        "usd": 0.003545263849432104,
+        "startedAt": "2026-10-20T13:43:50.160Z",
+        "cu": 0.022,
+        "durationMin": 0.3,
+        "proxyGb": 0
+      }
     },
     {
       "name": "Imperial Bag & Paper",
       "actorId": "dBpwb6p4tXuan7yvt",
       "inLocalRepo": true,
-      "cloudRuns": 8,
-      "lifetimeUsd": 0.5645,
+      "cloudRuns": 10,
+      "lifetimeUsd": 0.7946,
       "referenceRun": {
         "status": "SUCCEEDED",
-        "usd": 0.14918751971976923,
-        "startedAt": "2026-10-01T20:52:48.703Z",
-        "cu": 0.853,
-        "durationMin": 12.8,
+        "usd": 0.15164312340056635,
+        "startedAt": "2026-10-20T14:04:22.677Z",
+        "cu": 0.868,
+        "durationMin": 13.0,
         "proxyGb": 0
       }
     },
@@ -117,30 +159,44 @@
       "name": "Jagger (CDW)",
       "actorId": "6wMU6OugwLeUsxKT9",
       "inLocalRepo": true,
-      "cloudRuns": 0,
-      "lifetimeUsd": 0,
-      "referenceRun": null
+      "cloudRuns": 1,
+      "lifetimeUsd": 0.0047,
+      "referenceRun": {
+        "status": "FAILED",
+        "usd": 0.004651011555044684,
+        "startedAt": "2026-10-20T13:43:50.146Z",
+        "cu": 0.029,
+        "durationMin": 0.4,
+        "proxyGb": 0
+      }
     },
     {
       "name": "Sigma-Aldrich",
       "actorId": "0fvgR1JjbvEef0feD",
       "inLocalRepo": true,
-      "cloudRuns": 0,
-      "lifetimeUsd": 0,
-      "referenceRun": null
+      "cloudRuns": 1,
+      "lifetimeUsd": 0.0032,
+      "referenceRun": {
+        "status": "FAILED",
+        "usd": 0.0032329069108625254,
+        "startedAt": "2026-10-20T13:43:50.158Z",
+        "cu": 0.02,
+        "durationMin": 0.3,
+        "proxyGb": 0
+      }
     },
     {
       "name": "Staples",
       "actorId": "6TdbGbcy7ZS2C1iMa",
       "inLocalRepo": true,
-      "cloudRuns": 1,
-      "lifetimeUsd": 0.0143,
+      "cloudRuns": 3,
+      "lifetimeUsd": 0.8978,
       "referenceRun": {
-        "status": "SUCCEEDED",
-        "usd": 0.014250955094008977,
-        "startedAt": "2026-10-01T15:36:07.570Z",
-        "cu": 0.082,
-        "durationMin": 1.2,
+        "status": "TIMED-OUT",
+        "usd": 0.7639490923408823,
+        "startedAt": "2026-10-20T14:04:22.686Z",
+        "cu": 3.985,
+        "durationMin": 59.8,
         "proxyGb": 0
       }
     },
@@ -148,14 +204,14 @@
       "name": "IDT",
       "actorId": "MSOzQ9fvzcd2EuG8D",
       "inLocalRepo": false,
-      "cloudRuns": 3,
-      "lifetimeUsd": 0.0105,
+      "cloudRuns": 5,
+      "lifetimeUsd": 0.0249,
       "referenceRun": {
-        "status": "ABORTED",
-        "usd": 0.004896770418265628,
-        "startedAt": "2026-09-22T19:44:11.135Z",
-        "cu": 0.028,
-        "durationMin": 1.7,
+        "status": "SUCCEEDED",
+        "usd": 0.007321369417633746,
+        "startedAt": "2026-10-20T14:04:22.688Z",
+        "cu": 0.034,
+        "durationMin": 2.1,
         "proxyGb": 0
       }
     },
@@ -163,14 +219,14 @@
       "name": "Eurofins",
       "actorId": "HlARNGkqiyBuDLuTw",
       "inLocalRepo": false,
-      "cloudRuns": 1,
-      "lifetimeUsd": 0.0123,
+      "cloudRuns": 2,
+      "lifetimeUsd": 0.0248,
       "referenceRun": {
         "status": "SUCCEEDED",
-        "usd": 0.012258725566463836,
-        "startedAt": "2026-09-17T20:47:56.379Z",
-        "cu": 0.068,
-        "durationMin": 4.1,
+        "usd": 0.013224598895462517,
+        "startedAt": "2026-10-20T13:43:50.142Z",
+        "cu": 0.073,
+        "durationMin": 4.4,
         "proxyGb": 0
       }
     },
