@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T19:16:51.385785+00:00",
+  "generatedAt": "2026-10-27T18:41:36.673431+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,8 +14,8 @@
     "maxMonthlyUsageUsd": 300
   },
   "current": {
-    "monthlyUsageUsd": 41.63002001378335,
-    "monthlyActorComputeUnits": 187.25056472222215,
+    "monthlyUsageUsd": 118.2728700214241,
+    "monthlyActorComputeUnits": 539.496015833332,
     "monthlyResidentialProxyGbytes": 0.02246920671314001,
     "actorCount": 40
   },
@@ -100,13 +100,13 @@
       "actorId": "zWa1i5e0cr8H50URs",
       "inLocalRepo": true,
       "cloudRuns": 3,
-      "lifetimeUsd": 2.1908,
+      "lifetimeUsd": 3.0996,
       "referenceRun": {
-        "status": "RUNNING",
-        "usd": 1.429597198098621,
+        "status": "SUCCEEDED",
+        "usd": 2.338364140556009,
         "startedAt": "2026-10-26T17:12:30.460Z",
-        "cu": 8.286,
-        "durationMin": 124.3,
+        "cu": 13.798,
+        "durationMin": 207.0,
         "proxyGb": 0
       }
     },
@@ -190,13 +190,13 @@
       "actorId": "6TdbGbcy7ZS2C1iMa",
       "inLocalRepo": true,
       "cloudRuns": 4,
-      "lifetimeUsd": 2.5729,
+      "lifetimeUsd": 4.3526,
       "referenceRun": {
-        "status": "RUNNING",
-        "usd": 1.6750507802203614,
+        "status": "FAILED",
+        "usd": 3.4547265092231845,
         "startedAt": "2026-10-26T17:12:30.460Z",
-        "cu": 8.286,
-        "durationMin": 124.3,
+        "cu": 17.003,
+        "durationMin": 255.0,
         "proxyGb": 0
       }
     },
