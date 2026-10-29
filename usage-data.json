@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-28T18:51:32.310715+00:00",
+  "generatedAt": "2026-10-29T18:56:45.562022+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -11,12 +11,12 @@
     "endAt": "2026-11-25T23:59:59.999Z"
   },
   "limits": {
-    "maxMonthlyUsageUsd": 300
+    "maxMonthlyUsageUsd": 500
   },
   "current": {
-    "monthlyUsageUsd": 136.04291123174795,
-    "monthlyActorComputeUnits": 627.2576241666654,
-    "monthlyResidentialProxyGbytes": 0.19231258612126112,
+    "monthlyUsageUsd": 257.77724532040247,
+    "monthlyActorComputeUnits": 1137.5201419444434,
+    "monthlyResidentialProxyGbytes": 0.2667207084596157,
     "actorCount": 41
   },
   "actors": [
@@ -54,14 +54,14 @@
       "name": "Fisher Scientific",
       "actorId": "2fxV4yIi7vVBJyr0v",
       "inLocalRepo": true,
-      "cloudRuns": 8,
-      "lifetimeUsd": 4.7398,
+      "cloudRuns": 19,
+      "lifetimeUsd": 21.483,
       "referenceRun": {
         "status": "FAILED",
-        "usd": 1.8243927938446416,
-        "startedAt": "2026-10-28T16:56:00.918Z",
-        "cu": 7.451,
-        "durationMin": 111.8,
+        "usd": 2.6070423962850606,
+        "startedAt": "2026-10-29T13:37:03.127Z",
+        "cu": 9.149,
+        "durationMin": 137.2,
         "proxyGb": 0
       }
     },
@@ -84,8 +84,8 @@
       "name": "CST",
       "actorId": "4WnfDZ2qY3ptiDe0J",
       "inLocalRepo": true,
-      "cloudRuns": 3,
-      "lifetimeUsd": 0.3668,
+      "cloudRuns": 4,
+      "lifetimeUsd": 0.5446,
       "referenceRun": {
         "status": "SUCCEEDED",
         "usd": 0.17813651440060047,
@@ -99,14 +99,14 @@
       "name": "Ferguson",
       "actorId": "zWa1i5e0cr8H50URs",
       "inLocalRepo": true,
-      "cloudRuns": 3,
-      "lifetimeUsd": 3.0996,
+      "cloudRuns": 4,
+      "lifetimeUsd": 6.2966,
       "referenceRun": {
-        "status": "SUCCEEDED",
-        "usd": 2.338364140556009,
-        "startedAt": "2026-10-26T17:12:30.460Z",
-        "cu": 13.798,
-        "durationMin": 207.0,
+        "status": "FAILED",
+        "usd": 3.197001240076569,
+        "startedAt": "2026-10-29T01:37:04.760Z",
+        "cu": 19.262,
+        "durationMin": 288.9,
         "proxyGb": 0
       }
     },
@@ -114,8 +114,8 @@
       "name": "AVI",
       "actorId": "YYlwdzDbZjqydFcJQ",
       "inLocalRepo": true,
-      "cloudRuns": 3,
-      "lifetimeUsd": 0.0364,
+      "cloudRuns": 4,
+      "lifetimeUsd": 0.0498,
       "referenceRun": {
         "status": "SUCCEEDED",
         "usd": 0.01362342279237542,
@@ -144,8 +144,8 @@
       "name": "Imperial Bag & Paper",
       "actorId": "dBpwb6p4tXuan7yvt",
       "inLocalRepo": true,
-      "cloudRuns": 20,
-      "lifetimeUsd": 1.3942,
+      "cloudRuns": 21,
+      "lifetimeUsd": 1.5318,
       "referenceRun": {
         "status": "TIMED-OUT",
         "usd": 0.21661718584207354,
@@ -159,8 +159,8 @@
       "name": "Jagger (CDW)",
       "actorId": "6wMU6OugwLeUsxKT9",
       "inLocalRepo": true,
-      "cloudRuns": 3,
-      "lifetimeUsd": 0.9172,
+      "cloudRuns": 4,
+      "lifetimeUsd": 1.7194,
       "referenceRun": {
         "status": "SUCCEEDED",
         "usd": 0.8951583403593099,
@@ -190,13 +190,13 @@
       "actorId": "6TdbGbcy7ZS2C1iMa",
       "inLocalRepo": true,
       "cloudRuns": 7,
-      "lifetimeUsd": 9.1239,
+      "lifetimeUsd": 11.3024,
       "referenceRun": {
-        "status": "FAILED",
-        "usd": 3.4547265092231845,
-        "startedAt": "2026-10-26T17:12:30.460Z",
-        "cu": 17.003,
-        "durationMin": 255.0,
+        "status": "SUCCEEDED",
+        "usd": 3.5963830361838722,
+        "startedAt": "2026-10-28T17:07:02.534Z",
+        "cu": 17.666,
+        "durationMin": 265.0,
         "proxyGb": 0
       }
     },
@@ -204,14 +204,14 @@
       "name": "IDT",
       "actorId": "MSOzQ9fvzcd2EuG8D",
       "inLocalRepo": false,
-      "cloudRuns": 3,
-      "lifetimeUsd": 0.0224,
+      "cloudRuns": 4,
+      "lifetimeUsd": 0.0311,
       "referenceRun": {
         "status": "SUCCEEDED",
-        "usd": 0.008012322526990771,
-        "startedAt": "2026-10-26T17:12:30.418Z",
-        "cu": 0.038,
-        "durationMin": 2.3,
+        "usd": 0.008677831948641076,
+        "startedAt": "2026-10-29T12:57:04.652Z",
+        "cu": 0.042,
+        "durationMin": 2.5,
         "proxyGb": 0
       }
     },
