@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-29T18:56:45.562022+00:00",
+  "generatedAt": "2026-10-30T18:35:28.207719+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,8 +14,8 @@
     "maxMonthlyUsageUsd": 500
   },
   "current": {
-    "monthlyUsageUsd": 257.77724532040247,
-    "monthlyActorComputeUnits": 1137.5201419444434,
+    "monthlyUsageUsd": 264.2489835633579,
+    "monthlyActorComputeUnits": 1153.9165043749992,
     "monthlyResidentialProxyGbytes": 0.2667207084596157,
     "actorCount": 41
   },
@@ -54,8 +54,8 @@
       "name": "Fisher Scientific",
       "actorId": "2fxV4yIi7vVBJyr0v",
       "inLocalRepo": true,
-      "cloudRuns": 19,
-      "lifetimeUsd": 21.483,
+      "cloudRuns": 25,
+      "lifetimeUsd": 22.9562,
       "referenceRun": {
         "status": "FAILED",
         "usd": 2.6070423962850606,
