@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-03T20:05:43.142400+00:00",
+  "generatedAt": "2026-11-04T20:24:57.710015+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,8 +14,8 @@
     "maxMonthlyUsageUsd": 500
   },
   "current": {
-    "monthlyUsageUsd": 266.77189025454055,
-    "monthlyActorComputeUnits": 1162.4283806944436,
+    "monthlyUsageUsd": 272.981048141705,
+    "monthlyActorComputeUnits": 1196.4246681944437,
     "monthlyResidentialProxyGbytes": 0.2667207084596157,
     "actorCount": 41
   },
@@ -144,8 +144,8 @@
       "name": "Imperial Bag & Paper",
       "actorId": "dBpwb6p4tXuan7yvt",
       "inLocalRepo": true,
-      "cloudRuns": 21,
-      "lifetimeUsd": 1.5318,
+      "cloudRuns": 13,
+      "lifetimeUsd": 0.9673,
       "referenceRun": {
         "status": "TIMED-OUT",
         "usd": 0.21661718584207354,
@@ -189,8 +189,8 @@
       "name": "Staples",
       "actorId": "6TdbGbcy7ZS2C1iMa",
       "inLocalRepo": true,
-      "cloudRuns": 7,
-      "lifetimeUsd": 11.3024,
+      "cloudRuns": 6,
+      "lifetimeUsd": 11.2881,
       "referenceRun": {
         "status": "SUCCEEDED",
         "usd": 3.5963830361838722,
