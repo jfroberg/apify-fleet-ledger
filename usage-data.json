@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T20:38:46.502199+00:00",
+  "generatedAt": "2026-11-06T19:56:44.327946+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,9 +14,9 @@
     "maxMonthlyUsageUsd": 500
   },
   "current": {
-    "monthlyUsageUsd": 273.0404298499563,
-    "monthlyActorComputeUnits": 1196.4821459722214,
-    "monthlyResidentialProxyGbytes": 0.2667207084596157,
+    "monthlyUsageUsd": 274.62863189521875,
+    "monthlyActorComputeUnits": 1200.7492581944437,
+    "monthlyResidentialProxyGbytes": 0.2982396688312292,
     "actorCount": 41
   },
   "actors": [
@@ -129,8 +129,8 @@
       "name": "Grainger",
       "actorId": "31dvRegfepkUTcWOf",
       "inLocalRepo": true,
-      "cloudRuns": 4,
-      "lifetimeUsd": 0.4567,
+      "cloudRuns": 6,
+      "lifetimeUsd": 0.7611,
       "referenceRun": {
         "status": "FAILED",
         "usd": 0.23742490908156416,
@@ -174,14 +174,14 @@
       "name": "Sigma-Aldrich",
       "actorId": "0fvgR1JjbvEef0feD",
       "inLocalRepo": true,
-      "cloudRuns": 7,
-      "lifetimeUsd": 0.0984,
+      "cloudRuns": 10,
+      "lifetimeUsd": 1.3033,
       "referenceRun": {
-        "status": "SUCCEEDED",
-        "usd": 0.017398943689644335,
-        "startedAt": "2026-10-26T17:02:26.701Z",
-        "cu": 0.094,
-        "durationMin": 1.4,
+        "status": "RUNNING",
+        "usd": 1.1669018388142363,
+        "startedAt": "2026-11-06T19:03:32.365Z",
+        "cu": 3.539,
+        "durationMin": 53.1,
         "proxyGb": 0
       }
     },
