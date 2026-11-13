@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-12T20:47:56.692975+00:00",
+  "generatedAt": "2026-11-13T20:28:38.983918+00:00",
   "account": {
     "username": "umich_bf_procurement",
     "planBasePriceUsd": 199,
@@ -14,9 +14,9 @@
     "maxMonthlyUsageUsd": 500
   },
   "current": {
-    "monthlyUsageUsd": 276.0577210801917,
-    "monthlyActorComputeUnits": 1203.6981045833325,
-    "monthlyResidentialProxyGbytes": 0.2982396688312292,
+    "monthlyUsageUsd": 291.050821474608,
+    "monthlyActorComputeUnits": 1257.3644670833326,
+    "monthlyResidentialProxyGbytes": 0.40433801617473364,
     "actorCount": 41
   },
   "actors": [
@@ -54,8 +54,8 @@
       "name": "Fisher Scientific",
       "actorId": "2fxV4yIi7vVBJyr0v",
       "inLocalRepo": true,
-      "cloudRuns": 25,
-      "lifetimeUsd": 22.9562,
+      "cloudRuns": 27,
+      "lifetimeUsd": 25.1948,
       "referenceRun": {
         "status": "FAILED",
         "usd": 2.6070423962850606,
@@ -92,8 +92,8 @@
       "name": "Ferguson",
       "actorId": "zWa1i5e0cr8H50URs",
       "inLocalRepo": true,
-      "cloudRuns": 4,
-      "lifetimeUsd": 6.2966,
+      "cloudRuns": 5,
+      "lifetimeUsd": 8.9144,
       "referenceRun": {
         "status": "FAILED",
         "usd": 3.197001240076569,
@@ -122,15 +122,15 @@
       "name": "Grainger",
       "actorId": "31dvRegfepkUTcWOf",
       "inLocalRepo": true,
-      "cloudRuns": 6,
-      "lifetimeUsd": 0.7611,
+      "cloudRuns": 12,
+      "lifetimeUsd": 3.8986,
       "referenceRun": {
-        "status": "FAILED",
-        "usd": 0.23742490908156416,
-        "startedAt": "2026-10-26T17:02:26.694Z",
-        "cu": 0.413,
-        "durationMin": 6.2,
-        "proxyGb": 0.0225
+        "status": "RUNNING",
+        "usd": 2.594845587212414,
+        "startedAt": "2026-11-13T19:30:12.513Z",
+        "cu": 7.786,
+        "durationMin": 58.4,
+        "proxyGb": 0.0412
       }
     },
     {
